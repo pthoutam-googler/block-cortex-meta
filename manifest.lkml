@@ -5,7 +5,6 @@ constant: CONNECTION_NAME {
   export: override_required
 }
 
-
 constant: GCP_PROJECT_ID {
   value: "kittycorn-dev-epam"
   export: override_required
