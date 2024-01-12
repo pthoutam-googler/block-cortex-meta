@@ -1,3 +1,5 @@
+# Please change the connection values before deploying to production
+
 constant: CONNECTION_NAME {
   value: "dev-sfmc"
   export: override_required
