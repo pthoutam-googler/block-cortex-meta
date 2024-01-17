@@ -1,5 +1,5 @@
 view: job_agg {
-  sql_table_name:`@{GCP_PROJECT_ID}.@{REPORTING_DATASET}.JobAgg` ;;
+  sql_table_name:`@{GCP_PROJECT_ID}.@{REPORTING_DATASET}.job_agg` ;;
 
   dimension: email_name {
     type: string
