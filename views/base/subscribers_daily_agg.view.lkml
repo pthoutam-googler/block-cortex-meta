@@ -8,6 +8,8 @@ view: subscribers_daily_agg {
     datatype: date
     sql: ${TABLE}.Date ;;
   }
+
+
   dimension: num_of_joined {
     type: number
     sql: ${TABLE}.NumOfJoined ;;
