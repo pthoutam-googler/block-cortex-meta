@@ -47,6 +47,8 @@ view: campaigninsightsdailyagg {
     sql: ${TABLE}.campaign_name ;;
   }
 
+
+
   dimension: campaign_status {
     type: string
     sql: ${TABLE}.campaign_status ;;
