@@ -11,6 +11,6 @@ constant: GCP_PROJECT_ID {
 }
 
 constant: REPORTING_DATASET {
-  value: "looker_reporting_sfmc"
+  value: "looker_reporting_meta"
   export: override_required
 }
