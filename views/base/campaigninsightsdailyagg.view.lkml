@@ -22,7 +22,7 @@ view: campaigninsightsdailyagg {
         placement_details.platform_position as placement,
         placement_details.publisher_platform as platform,
         (campaign.video_view/campaign.video_p95_watched_actions)*100 as cvr,
-        campaign.total_spend/campaign.video_p95_watched_actions as cpv,
+        campaign.total_spend/campaign.video_p95_watched_actions as cpcv,
         campaign.link_clicks,
         campaign.post_shares,
         campaign.post_reaction,
@@ -38,7 +38,7 @@ view: campaigninsightsdailyagg {
         campaign.angry,
         (campaign.sad+campaign.wow+campaign.love+campaign.`like`+campaign.haha+campaign.angry) as total_reaction,
         COALESCE(campaign.link_clicks, 0)+COALESCE(campaign.post_shares, 0)+COALESCE(campaign.post_reaction, 0)+COALESCE(campaign.post_save, 0)+COALESCE(campaign.post_comments, 0)+COALESCE(campaign.`like`, 0)+COALESCE(campaign.video_view, 0)+COALESCE(campaign.photo_View, 0) as total_engagement,
-        (COALESCE(campaign.link_clicks, 0)+COALESCE(campaign.post_shares, 0)+COALESCE(campaign.post_reaction, 0)+COALESCE(campaign.post_save, 0)+COALESCE(campaign.post_comments, 0)+COALESCE(campaign.`like`, 0)+COALESCE(campaign.video_view, 0)+COALESCE(campaign.photo_View, 0)/campaign.total_reach)*100 as engagement_rate,
+        ((COALESCE(campaign.link_clicks, 0)+COALESCE(campaign.post_shares, 0)+COALESCE(campaign.post_reaction, 0)+COALESCE(campaign.post_save, 0)+COALESCE(campaign.post_comments, 0)+COALESCE(campaign.`like`, 0)+COALESCE(campaign.video_view, 0)+COALESCE(campaign.photo_View, 0))/campaign.total_reach)*100 as engagement_rate,
         campaign.total_spend/ NULLIF(COALESCE(campaign.link_clicks, 0)+COALESCE(campaign.post_shares, 0)+COALESCE(campaign.post_reaction, 0)+COALESCE(campaign.post_save, 0)+COALESCE(campaign.post_comments, 0)+COALESCE(campaign.`like`, 0)+COALESCE(campaign.video_view, 0)+COALESCE(campaign.photo_View, 0), 0) as cpe
       from `kittycorn-dev-epam.looker_reporting_meta.CampaignInsightsDailyAgg` campaign
       LEFT JOIN UNNEST(placement_details) as placement_details;;
@@ -152,7 +152,7 @@ view: campaigninsightsdailyagg {
     sql: ${TABLE}.cvr ;;
   }
 
-  dimension: cpv {
+  dimension: cpcv {
     type: number
     sql: ${TABLE}.cpv ;;
   }
