@@ -138,15 +138,8 @@ view: +campaigninsightsdailyagg {
   measure: cpcv_average{
     type: average
     label: "CPCV Average"
-    value_format:"0.00\%"
+    value_format_name: usd
     sql: ${TABLE}.cpcv ;;
-  }
-
-  measure: vtr_average{
-    type: average
-    label: "VTR Average"
-    value_format:"0.00\%"
-    sql: ${TABLE}.vtr ;;
   }
 
   measure: cpm_average{

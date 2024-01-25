@@ -18,7 +18,6 @@ view: campaigninsightsdailyagg {
         campaign.total_spend/(campaign.total_impressions/1000) as cpm,
         campaign.video_view as total_video_view,
         campaign.video_p95_watched_actions,
-        (campaign.video_view/campaign.video_p95_watched_actions)*100 as vtr,
         (campaign.total_clicks/campaign.total_impressions)*100 as ctr,
         placement_details.platform_position as placement,
         placement_details.publisher_platform as platform,
@@ -132,11 +131,6 @@ view: campaigninsightsdailyagg {
   dimension: video_p95_watched_actions {
     type: number
     sql: ${TABLE}.video_p95_watched_actions ;;
-  }
-
-  dimension: vtr {
-    type: number
-    sql: ${TABLE}.vtr ;;
   }
 
   dimension: ctr {
