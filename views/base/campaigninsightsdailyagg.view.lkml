@@ -98,36 +98,43 @@ view: campaigninsightsdailyagg {
   dimension: campaign_stop_time {
     type: date_time
     datatype: date
+    description: "Merging of stop_times for the ad sets belonging to this campaign, if available"
     sql: CAST(${TABLE}.campaign_stop_time AS datetime) ;;
   }
 
   dimension: total_spend {
     type: number
+    description: "The estimated total amount of money you've spent on your campaign, ad set or ad during its schedule. This metric is estimated"
     sql: ${TABLE}.total_spend ;;
   }
 
   dimension: total_clicks {
     type: number
+    description: "The Number of clicks on your ads"
     sql: ${TABLE}.total_clicks ;;
   }
 
   dimension: frequency {
     type: number
+    description: "The average number of times each person saw your ad. This metric is estimated"
     sql: ${TABLE}.frequency ;;
   }
 
   dimension: total_impressions {
     type: number
+    description: "The number of times your ads were on screen"
     sql: ${TABLE}.total_impressions ;;
   }
 
   dimension: total_reach {
     type: number
+    description: "The number of people who saw your ads at least once"
     sql: ${TABLE}.total_reach ;;
   }
 
   dimension: cpm {
     type: number
+    description: "The average amount of money you've spent per 1,000 impressions"
     sql: ${TABLE}.cpm ;;
   }
 
