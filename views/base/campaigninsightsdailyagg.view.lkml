@@ -145,6 +145,7 @@ view: campaigninsightsdailyagg {
 
   dimension: video_p95_watched_actions {
     type: number
+    description: "The number of times your video was played at 95% of its length, including plays that skipped to this point"
     sql: ${TABLE}.video_p95_watched_actions ;;
   }
 
@@ -174,36 +175,43 @@ view: campaigninsightsdailyagg {
 
   dimension: cpcv {
     type: number
+    description: "The estimated total amount of money you've spent on your campaign, ad set or ad during its schedule. This metric is estimated"
     sql: ${TABLE}.cpv ;;
   }
 
   dimension: link_clicks {
     type: number
+    description: "The number of clicks on your link"
     sql: ${TABLE}.link_clicks ;;
   }
 
   dimension: post_shares {
     type: number
+    description: "Number of times the video was shared"
     sql: ${TABLE}.post_shares ;;
   }
 
   dimension: post_reaction {
     type: number
+    description: "Total count of reactions (Like, Love, Haha, Wow, Sad, Angry) to your video"
     sql: ${TABLE}.post_reaction ;;
   }
 
   dimension: post_save {
     type: number
+    description: "Post Saves"
     sql: ${TABLE}.post_save ;;
   }
 
   dimension: post_comments {
     type: number
+    description: "Number of comments made on your video. comment: Post Comments"
     sql: ${TABLE}.post_comments ;;
   }
 
   dimension: like {
     type: number
+    description: "Page Likes"
     sql: ${TABLE}.`like` ;;
   }
 
@@ -234,6 +242,7 @@ view: campaigninsightsdailyagg {
 
   dimension: total_reaction {
     type: number
+    description: "Total reactions"
     sql: ${TABLE}.total_reaction ;;
   }
 
@@ -245,21 +254,25 @@ view: campaigninsightsdailyagg {
 
   dimension: photo_View {
     type: number
+    description: "Page Photo Views"
     sql: ${TABLE}.photo_View ;;
   }
 
   dimension: total_engagement {
     type: number
+    description: "Sum of all interactions on the video"
     sql: ${TABLE}.total_engagement ;;
   }
 
   dimension: engagement_rate {
     type: number
+    description: "The amount of engagement that your ad receives is divided by the number of times your ad is shown"
     sql: ${TABLE}.engagement_rate ;;
   }
 
   dimension: cpe {
     type: number
+    description: "The estimated total amount of money you've spent on your campaign, ad set or ad during its schedule devided by  link_clicks+campaign.post_shares+campaign.post_reaction+campaign.post_save+campaign.post_comments+campaign.video_view+campaign.photo_View"
     sql: ${TABLE}.cpe ;;
   }
 
