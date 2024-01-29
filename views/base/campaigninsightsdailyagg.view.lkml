@@ -48,85 +48,95 @@ view: campaigninsightsdailyagg {
 
   dimension: campaign_name {
     type: string
+    description: "The name of your ad account, which groups your advertising activity"
     sql: ${TABLE}.campaign_name ;;
   }
 
   dimension: campaign_status {
     type: string
+    description: "If this status is PAUSED, all its active ad sets and ads will be paused and have an effective status CAMPAIGN_PAUSED"
     sql: ${TABLE}.campaign_status ;;
   }
 
   dimension: country {
     type: string
+    description: "Country"
     sql: ${TABLE}.country ;;
   }
 
   dimension: campaign_objective {
     type: string
+    description: "Campaign's objective"
     sql: ${TABLE}.campaign_objective ;;
   }
 
   dimension: campaign_id {
     type: number
+    description: "Id of campaigns"
     sql: ${TABLE}.campaign_id ;;
   }
 
   dimension: account_id {
     type: number
+    description: "The ID number of your ad account, which groups your advertising activity"
     sql: ${TABLE}.account_id ;;
   }
 
   dimension: report_date {
     type: date
     datatype: date
+    description: "API data extraction date to be used for Reporting Use cases"
     sql: ${TABLE}.report_date ;;
   }
 
   dimension: campaign_start_time {
     type: date_time
     datatype: date
+    description: "Merging of start_times for the ad sets belonging to this campaign"
     sql: CAST(${TABLE}.campaign_start_time AS datetime) ;;
   }
 
   dimension: campaign_stop_time {
     type: date_time
     datatype: date
+    description: "Merging of stop_times for the ad sets belonging to this campaign, if available"
     sql: CAST(${TABLE}.campaign_stop_time AS datetime) ;;
   }
 
   dimension: total_spend {
     type: number
+    description: "The estimated total amount of money you've spent on your campaign, ad set or ad during its schedule. This metric is estimated"
     sql: ${TABLE}.total_spend ;;
   }
 
   dimension: total_clicks {
     type: number
+    description: "The Number of clicks on your ads"
     sql: ${TABLE}.total_clicks ;;
   }
 
   dimension: frequency {
     type: number
+    description: "The average number of times each person saw your ad. This metric is estimated"
     sql: ${TABLE}.frequency ;;
   }
 
   dimension: total_impressions {
     type: number
+    description: "The number of times your ads were on screen"
     sql: ${TABLE}.total_impressions ;;
   }
 
   dimension: total_reach {
     type: number
+    description: "The number of people who saw your ads at least once"
     sql: ${TABLE}.total_reach ;;
   }
 
   dimension: cpm {
     type: number
+    description: "The average amount of money you've spent per 1,000 impressions"
     sql: ${TABLE}.cpm ;;
-  }
-
-  dimension: video_view {
-    type: number
-    sql: ${TABLE}.video_view ;;
   }
 
   dimension: video_p95_watched_actions {
@@ -136,21 +146,25 @@ view: campaigninsightsdailyagg {
 
   dimension: ctr {
     type: number
+    description: "The Number of clicks on your ads devided by he number of times your ads were on screen"
     sql: ${TABLE}.ctr ;;
   }
 
   dimension: placement {
     type: string
+    description: "Where your ad was shown within a platform, for example on Facebook desktop Feed, or Instagram Mobile Feed"
     sql: ${TABLE}.placement ;;
   }
 
   dimension: platform {
     type: string
+    description: "Facebook, Intagram etc"
     sql: ${TABLE}.platform ;;
   }
 
   dimension: cvr {
     type: number
+    description: "Page Video Views devidev by The number of times your video was played at 95% of its length, including plays that skipped to this point"
     sql: ${TABLE}.cvr ;;
   }
 
@@ -222,6 +236,12 @@ view: campaigninsightsdailyagg {
   dimension: total_reaction {
     type: number
     sql: ${TABLE}.total_reaction ;;
+  }
+
+  dimension: video_view {
+    type: number
+    description: "Page Video Views"
+    sql: ${TABLE}.video_view ;;
   }
 
   dimension: photo_View {
