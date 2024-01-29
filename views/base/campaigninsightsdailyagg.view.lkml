@@ -16,13 +16,14 @@ view: campaigninsightsdailyagg {
         campaign.total_impressions,
         campaign.total_reach,
         campaign.total_spend/(campaign.total_impressions/1000) as cpm,
-        campaign.video_view as total_video_view,
+        campaign.video_view,
         campaign.video_p95_watched_actions,
         (campaign.total_clicks/campaign.total_impressions)*100 as ctr,
-        placement_details.platform_position as placement,
-        placement_details.publisher_platform as platform,
-        (campaign.video_view/campaign.video_p95_watched_actions)*100 as cvr,
+        placement_details.platform_position as placement_details,
+        placement_details.publisher_platform as platform_details,
+        campaign.video_p95_watched_actions*100/campaign.video_view as cvr,
         campaign.total_spend/campaign.video_p95_watched_actions as cpcv,
+        campaign.total_spend/NULLIF(campaign.video_view, 0) as cpv,
         campaign.link_clicks,
         campaign.post_shares,
         campaign.post_reaction,
@@ -123,9 +124,9 @@ view: campaigninsightsdailyagg {
     sql: ${TABLE}.cpm ;;
   }
 
-  dimension: total_video_view {
+  dimension: video_view {
     type: number
-    sql: ${TABLE}.total_video_view ;;
+    sql: ${TABLE}.video_view ;;
   }
 
   dimension: video_p95_watched_actions {
@@ -154,6 +155,11 @@ view: campaigninsightsdailyagg {
   }
 
   dimension: cpcv {
+    type: number
+    sql: ${TABLE}.cpv ;;
+  }
+
+  dimension: cpv {
     type: number
     sql: ${TABLE}.cpv ;;
   }
@@ -216,11 +222,6 @@ view: campaigninsightsdailyagg {
   dimension: total_reaction {
     type: number
     sql: ${TABLE}.total_reaction ;;
-  }
-
-  dimension: video_view {
-    type: number
-    sql: ${TABLE}.video_view ;;
   }
 
   dimension: photo_View {

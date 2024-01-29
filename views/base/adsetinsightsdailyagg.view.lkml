@@ -1,12 +1,12 @@
 view: adsetinsightsdailyagg {
   derived_table: {
     sql: SELECT
-        targeting_details.audience_subtype,
+        targeting_audiences.subtype,
         ad.campaign_id,
         ad.report_date,
         ad.account_id
       FROM `kittycorn-dev-epam.looker_reporting_meta.AdsetInsightsDailyAgg` ad
-      LEFT JOIN UNNEST(targeting_details) as targeting_details;;
+      LEFT JOIN UNNEST(targeting_audiences) as targeting_audiences;;
   }
 
   dimension: campaign_id {
@@ -24,9 +24,9 @@ view: adsetinsightsdailyagg {
     sql: ${TABLE}.account_id ;;
   }
 
-  dimension: audience_subtype {
+  dimension: subtype {
     type: string
-    sql: ${TABLE}.audience_subtype ;;
+    sql: ${TABLE}.subtype ;;
   }
 
 }

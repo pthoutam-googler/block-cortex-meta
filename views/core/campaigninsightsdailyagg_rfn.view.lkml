@@ -41,7 +41,7 @@ view: +campaigninsightsdailyagg {
     type: sum
     label: "Total Video View"
     value_format_name: "positive_m_or_k"
-    sql: ${TABLE}.total_video_view ;;
+    sql: ${TABLE}.video_view ;;
   }
 
   measure: total_cost_sum {
@@ -133,6 +133,13 @@ view: +campaigninsightsdailyagg {
     label: "CVR Average"
     value_format:"0.00\%"
     sql: ${TABLE}.cvr ;;
+  }
+
+  measure: cpv_average{
+    type: average
+    label: "CPV Average"
+    value_format_name: usd
+    sql: ${TABLE}.cpv ;;
   }
 
   measure: cpcv_average{
