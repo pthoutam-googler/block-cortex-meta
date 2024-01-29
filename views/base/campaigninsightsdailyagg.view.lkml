@@ -150,21 +150,25 @@ view: campaigninsightsdailyagg {
 
   dimension: ctr {
     type: number
+    description: "The Number of clicks on your ads devided by he number of times your ads were on screen"
     sql: ${TABLE}.ctr ;;
   }
 
   dimension: placement {
     type: string
+    description: "Where your ad was shown within a platform, for example on Facebook desktop Feed, or Instagram Mobile Feed"
     sql: ${TABLE}.placement ;;
   }
 
   dimension: platform {
     type: string
+    description: "Facebook, Intagram etc"
     sql: ${TABLE}.platform ;;
   }
 
   dimension: cvr {
     type: number
+    description: "Page Video Views devidev by The number of times your video was played at 95% of its length, including plays that skipped to this point"
     sql: ${TABLE}.cvr ;;
   }
 
@@ -235,6 +239,7 @@ view: campaigninsightsdailyagg {
 
   dimension: video_view {
     type: number
+    description: "Page Video Views"
     sql: ${TABLE}.video_view ;;
   }
 
