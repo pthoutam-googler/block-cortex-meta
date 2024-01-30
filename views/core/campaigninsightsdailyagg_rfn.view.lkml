@@ -41,7 +41,7 @@ view: +campaigninsightsdailyagg {
     type: sum
     label: "Total Video View"
     value_format_name: "positive_m_or_k"
-    sql: ${TABLE}.video_view ;;
+    sql: ${TABLE}.total_video_view ;;
   }
 
   measure: total_cost_sum {
