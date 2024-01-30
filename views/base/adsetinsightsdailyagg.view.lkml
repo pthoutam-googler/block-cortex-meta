@@ -11,21 +11,25 @@ view: adsetinsightsdailyagg {
 
   dimension: campaign_id {
     type: number
+    description: "Id of campaigns"
     sql: ${TABLE}.campaign_id ;;
   }
 
   dimension: report_date {
     type: date
+    description: "API data extraction date to be used for Reporting Use cases"
     sql: ${TABLE}.report_date ;;
   }
 
   dimension: account_id {
     type: number
+    description: "The ID number of your ad account, which groups your advertising activity"
     sql: ${TABLE}.account_id ;;
   }
 
   dimension: subtype {
     type: string
+    description: "Audience which we know"
     sql: ${TABLE}.subtype ;;
   }
 
