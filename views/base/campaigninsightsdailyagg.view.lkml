@@ -16,11 +16,11 @@ view: campaigninsightsdailyagg {
         campaign.total_impressions,
         campaign.total_reach,
         campaign.total_spend/(campaign.total_impressions/1000) as cpm,
-        campaign.video_view,
+        campaign.video_view as total_video_view,
         campaign.video_p95_watched_actions,
-        (campaign.total_clicks/campaign.total_impressions)*100 as ctr,
-        placement_details.platform_position as placement_details,
-        placement_details.publisher_platform as platform_details,
+        (campaign.link_clicks/campaign.total_impressions)*100 as ctr,
+        placement_details.platform_position as placement,
+        placement_details.publisher_platform as platform,
         campaign.video_p95_watched_actions*100/campaign.video_view as cvr,
         campaign.total_spend/campaign.video_p95_watched_actions as cpcv,
         campaign.total_spend/NULLIF(campaign.video_view, 0) as cpv,
@@ -133,6 +133,12 @@ view: campaigninsightsdailyagg {
     sql: ${TABLE}.total_reach ;;
   }
 
+  dimension: total_video_view {
+    type: number
+    description: "Page Video Views"
+    sql: ${TABLE}.total_video_view ;;
+  }
+
   dimension: cpm {
     type: number
     description: "The average amount of money you've spent per 1,000 impressions"
@@ -172,7 +178,7 @@ view: campaigninsightsdailyagg {
   dimension: cpcv {
     type: number
     description: "The estimated total amount of money you've spent on your campaign, ad set or ad during its schedule. This metric is estimated"
-    sql: ${TABLE}.cpv ;;
+    sql: ${TABLE}.cpcv ;;
   }
 
   dimension: cpv {
@@ -245,12 +251,6 @@ view: campaigninsightsdailyagg {
     type: number
     description: "Total reactions"
     sql: ${TABLE}.total_reaction ;;
-  }
-
-  dimension: video_view {
-    type: number
-    description: "Page Video Views"
-    sql: ${TABLE}.video_view ;;
   }
 
   dimension: photo_View {
