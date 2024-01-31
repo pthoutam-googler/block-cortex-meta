@@ -18,7 +18,7 @@ view: campaigninsightsdailyagg {
         campaign.total_spend/(campaign.total_impressions/1000) as cpm,
         campaign.video_view as total_video_view,
         campaign.video_p95_watched_actions,
-        (campaign.total_clicks/campaign.total_impressions)*100 as ctr,
+        (campaign.link_clicks/campaign.total_impressions)*100 as ctr,
         placement_details.platform_position as placement,
         placement_details.publisher_platform as platform,
         campaign.video_p95_watched_actions*100/campaign.video_view as cvr,

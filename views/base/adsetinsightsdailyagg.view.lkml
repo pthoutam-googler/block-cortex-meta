@@ -15,15 +15,18 @@ SELECT
  ad.report_date,
  ad.account_id,
  ad.total_impressions,
+ ad.total_reach,
  COALESCE(ad.link_clicks, 0)+COALESCE(ad.post_shares, 0)+COALESCE(ad.post_reaction, 0)+COALESCE(ad.post_save, 0)+COALESCE(ad.post_comments, 0)+COALESCE(ad.`like`, 0)+COALESCE(ad.video_view, 0)+COALESCE(ad.photo_View, 0) as total_engagement,
  ad.video_p95_watched_actions_video_views,
- (ad.total_clicks/ad.total_impressions)*100 as ctr,
+ (ad.link_clicks/ad.total_impressions)*100 as ctr,
  ad.total_spend/(ad.total_impressions/1000) as cpm,
  ((COALESCE(ad.link_clicks, 0)+COALESCE(ad.post_shares, 0)+COALESCE(ad.post_reaction, 0)+COALESCE(ad.post_save, 0)+COALESCE(ad.post_comments, 0)+COALESCE(ad.`like`, 0)+COALESCE(ad.video_view, 0)+COALESCE(ad.photo_View, 0))/ad.total_reach)*100 as engagement_rate,
  ad.video_p95_watched_actions_video_views*100/ad.video_view as cvr,
  ad.total_spend/ad.video_p95_watched_actions_video_views as cpcv,
+ placement_details.publisher_platform as platform
 FROM `kittycorn-dev-epam.looker_reporting_meta.AdsetInsightsDailyAgg` ad
 LEFT JOIN UNNEST(targeting_audiences) as targeting_audiences
+LEFT JOIN UNNEST(placement_details) as placement_details
 INNER JOIN A USING(id);;
   }
 
@@ -60,10 +63,10 @@ INNER JOIN A USING(id);;
     sql: ${TABLE}.total_impressions ;;
   }
 
-  dimension: subtype {
-    type: string
-    description: "Audience which we know"
-    sql: ${TABLE}.subtype ;;
+  dimension: total_reach {
+    type: number
+    description: "The number of people who saw your ads at least once"
+    sql: ${TABLE}.total_reach ;;
   }
 
   dimension: total_engagement {
@@ -102,5 +105,11 @@ INNER JOIN A USING(id);;
   dimension: cpcv {
     type: number
     sql: ${TABLE}.cpcv ;;
+  }
+
+  dimension: platform {
+    type: string
+    description: "Facebook, Intagram etc"
+    sql: ${TABLE}.platform ;;
   }
 }
