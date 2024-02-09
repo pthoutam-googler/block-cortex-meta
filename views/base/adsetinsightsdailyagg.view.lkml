@@ -3,14 +3,14 @@ view: adsetinsightsdailyagg {
      sql: with A as(
      SELECT distinct
          adset_id,
-         STRING_AGG(distinct targeting_audiences.name, " + ") as sub_names
+         STRING_AGG(distinct targeting_audiences.name, " + ") as adset_audience
      FROM `kittycorn-dev-epam.looker_reporting_meta.AdsetInsightsDailyAgg` ad
      LEFT JOIN UNNEST(targeting_audiences) as targeting_audiences
      group by adset_id
      )
      SELECT
       ad.total_impressions,
-      A.sub_names,
+      A.adset_audience,
       SAFE_DIVIDE( ad.total_spend, ad.total_impressions / 1000) as cpm,
       SAFE_DIVIDE( ad.link_clicks, ad.total_impressions) * 100 as link_ctr,
       ad.post_engagement,
@@ -30,10 +30,10 @@ view: adsetinsightsdailyagg {
     description: "The number of times your ads were on screen."
     sql: ${TABLE}.total_impressions ;;
   }
-  dimension: adset_name {
+  dimension: adset_audience {
     type: string
     description: "Names of the audiences or interests"
-    sql: ${TABLE}.sub_names ;;
+    sql: ${TABLE}.adset_audience ;;
   }
   dimension: cpm {
     type: number

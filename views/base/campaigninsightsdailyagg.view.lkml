@@ -37,7 +37,7 @@ view: campaigninsightsdailyagg {
     description: "API data extraction date to be used for Reporting Use cases."
     sql: ${TABLE}.report_date ;;
   }
-  dimension: date_month {
+  dimension: month {
     type: date_month
     description: "API data extraction date to be used for Reporting Use cases."
     sql: ${TABLE}.report_date;;
