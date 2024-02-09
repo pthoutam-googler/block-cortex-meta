@@ -2,60 +2,64 @@ include: "/views/base/adsetinsightsdailyagg.view"
 
 view: +adsetinsightsdailyagg {
 
-  measure: total_video_p95_watched_actions_video_views {
-    type: sum
-    label: "Total Video_p95 Adset"
-    value_format_name: "positive_m_or_k"
-    sql: ${TABLE}.video_p95_watched_actions_video_views ;;
+  dimension: adsetinsightsdailyagg_pk {
+    type: string
+    primary_key: yes
+    hidden: yes
+    sql: CONCAT(${TABLE}.campaign_id, ${TABLE}.account_id, ${TABLE}.report_date) ;;
   }
-
-  measure: total_impressions_adset_sum {
+  measure: sum_of_total_impressions {
     type: sum
-    label: "Total Impressions Adset"
     value_format_name: "positive_m_or_k"
-    sql: ${TABLE}.total_impressions ;;
+    description: "The number of times your ads were on screen."
+    sql: ${total_impressions_adset} ;;
   }
-
-  measure: total_engagement_adset_sum {
-    type: sum
-    label: "Total Engagement Adset"
-    value_format_name: "positive_m_or_k"
-    sql: ${TABLE}.total_engagement ;;
-  }
-
-  measure: cpm_adset_average{
+  measure: average_of_cpm{
     type: average
-    label: "CPM Average Adset"
     value_format_name: usd
-    sql: ${TABLE}.cpm ;;
+    description: "The average cost for 1,000 impressions."
+    sql: ${cpm} ;;
   }
-
-  measure: ctr_adset_average{
+  measure: average_of_link_ctr{
     type: average
-    label: "CTR Average Adset"
     value_format:"0.00\%"
-    sql: ${TABLE}.ctr ;;
+    description: "The number of clicks that your ad receives divided by the number of times your ad is shown"
+    sql: ${link_ctr} ;;
   }
-
-  measure: engagement_rate_adset_average{
+  measure: sum_of_post_engagement {
+    type: sum
+    value_format_name: "positive_m_or_k"
+    description: "Post engagements are the total number of actions that people take involving your ads"
+    sql: ${post_engagement_adset} ;;
+  }
+  measure: average_of_engagement_rate{
     type: average
-    label: "ER Average Adset"
     value_format:"0.00\%"
-    sql: ${TABLE}.engagement_rate ;;
+    description: "The total engagement divided by total reach."
+    sql: ${engagement_rate} ;;
   }
-
-  measure: cvr_adset_average{
+  measure: average_of_cpe{
     type: average
-    label: "CVR Average Adset"
     value_format:"0.00\%"
-    sql: ${TABLE}.cvr ;;
+    description: "Compares the cost to the total amount of engagements on a Facebook post that include: likes and reactions. comments. shares."
+    sql: ${cpe} ;;
   }
-
-  measure: cpcv_adset_average{
+  measure: sum_of_total_video_view {
+    type: sum
+    value_format_name: "positive_m_or_k"
+    description: "The number of times your video plays for at least 3 seconds"
+    sql: ${total_video_view} ;;
+  }
+  measure: average_of_vtr{
     type: average
-    label: "CPCV Average Adset"
+    value_format:"0.00\%"
+    description: "The video p95 watched actions divided by impressions."
+    sql: ${vtr} ;;
+  }
+  measure: average_of_cpcv{
+    type: average
     value_format_name: usd
-    sql: ${TABLE}.cpcv ;;
+    description: "Pay for a video ad once the user watches a video in its entirety"
+    sql: ${cpcv} ;;
   }
-
 }

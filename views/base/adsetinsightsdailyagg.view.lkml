@@ -1,115 +1,83 @@
 view: adsetinsightsdailyagg {
   derived_table: {
-    sql: with A as(
-SELECT distinct
-    targeting_audiences.id,
-    STRING_AGG(distinct targeting_audiences.name, ", " ORDER BY targeting_audiences.name) as sub_names
-FROM `kittycorn-dev-epam.looker_reporting_meta.AdsetInsightsDailyAgg` ad
-LEFT JOIN UNNEST(targeting_audiences) as targeting_audiences
-group by targeting_audiences.id
-)
-SELECT
- targeting_audiences.id as audiences_id,
- A.sub_names,
- ad.campaign_id,
- ad.report_date,
- ad.account_id,
- ad.total_impressions,
- ad.total_reach,
- COALESCE(ad.link_clicks, 0)+COALESCE(ad.post_shares, 0)+COALESCE(ad.post_reaction, 0)+COALESCE(ad.post_save, 0)+COALESCE(ad.post_comments, 0)+COALESCE(ad.`like`, 0)+COALESCE(ad.video_view, 0)+COALESCE(ad.photo_View, 0) as total_engagement,
- ad.video_p95_watched_actions_video_views,
- (ad.link_clicks/ad.total_impressions)*100 as ctr,
- ad.total_spend/(ad.total_impressions/1000) as cpm,
- ((COALESCE(ad.link_clicks, 0)+COALESCE(ad.post_shares, 0)+COALESCE(ad.post_reaction, 0)+COALESCE(ad.post_save, 0)+COALESCE(ad.post_comments, 0)+COALESCE(ad.`like`, 0)+COALESCE(ad.video_view, 0)+COALESCE(ad.photo_View, 0))/ad.total_reach)*100 as engagement_rate,
- ad.video_p95_watched_actions_video_views*100/ad.video_view as cvr,
- ad.total_spend/ad.video_p95_watched_actions_video_views as cpcv,
- placement_details.publisher_platform as platform
-FROM `kittycorn-dev-epam.looker_reporting_meta.AdsetInsightsDailyAgg` ad
-LEFT JOIN UNNEST(targeting_audiences) as targeting_audiences
-LEFT JOIN UNNEST(placement_details) as placement_details
-INNER JOIN A USING(id);;
+     sql: with A as(
+     SELECT distinct
+         adset_id,
+         STRING_AGG(distinct targeting_audiences.name, " + ") as sub_names
+     FROM `kittycorn-dev-epam.looker_reporting_meta.AdsetInsightsDailyAgg` ad
+     LEFT JOIN UNNEST(targeting_audiences) as targeting_audiences
+     group by adset_id
+     )
+     SELECT
+      ad.total_impressions,
+      A.sub_names,
+      SAFE_DIVIDE( ad.total_spend, ad.total_impressions / 1000) as cpm,
+      SAFE_DIVIDE( ad.link_clicks, ad.total_impressions) * 100 as link_ctr,
+      ad.post_engagement,
+      platform_details.publisher_platform as platform,
+      SAFE_DIVIDE( ad.post_engagement, ad.total_reach) * 100 as engagement_rate,
+      SAFE_DIVIDE( ad.total_spend, ad.post_engagement) as cpe,
+      ad.video_view,
+      SAFE_DIVIDE( ad.video_p95_watched_actions_video_views, ad.total_impressions) * 100 as vtr,
+      SAFE_DIVIDE( ad.total_spend, ad.video_p95_watched_actions_video_views) as cpcv
+     FROM `kittycorn-dev-epam.looker_reporting_meta.AdsetInsightsDailyAgg` ad
+     LEFT JOIN UNNEST(targeting_audiences) as targeting_audiences
+     LEFT JOIN UNNEST(platform_details) as platform_details
+     INNER JOIN A USING(adset_id);;
   }
-
-  dimension: audiences_id {
+  dimension: total_impressions_adset {
     type: number
-    sql: ${TABLE}.audiences_id ;;
-  }
-
-  dimension: sub_names {
-    type: string
-    sql: ${TABLE}.sub_names ;;
-  }
-
-  dimension: campaign_id {
-    type: number
-    description: "Id of campaigns"
-    sql: ${TABLE}.campaign_id ;;
-  }
-
-  dimension: report_date {
-    type: date
-    description: "API data extraction date to be used for Reporting Use cases"
-    sql: ${TABLE}.report_date ;;
-  }
-
-  dimension: account_id {
-    type: number
-    description: "The ID number of your ad account, which groups your advertising activity"
-    sql: ${TABLE}.account_id ;;
-  }
-
-  dimension: total_impressions {
-    type: number
+    description: "The number of times your ads were on screen."
     sql: ${TABLE}.total_impressions ;;
   }
-
-  dimension: total_reach {
-    type: number
-    description: "The number of people who saw your ads at least once"
-    sql: ${TABLE}.total_reach ;;
+  dimension: adset_name {
+    type: string
+    description: "Names of the audiences or interests"
+    sql: ${TABLE}.sub_names ;;
   }
-
-  dimension: total_engagement {
-    type: number
-    sql: ${TABLE}.total_engagement ;;
-  }
-
-  dimension: video_p95_watched_actions_video_views {
-    type: number
-    sql: ${TABLE}.video_p95_watched_actions_video_views ;;
-  }
-
-  dimension: ctr {
-    type: number
-    description: "The Number of clicks on your ads devided by he number of times your ads were on screen"
-    sql: ${TABLE}.ctr ;;
-  }
-
   dimension: cpm {
     type: number
-    description: "The average amount of money you've spent per 1,000 impressions"
+    description: "The average cost for 1,000 impressions."
     sql: ${TABLE}.cpm ;;
   }
-
-  dimension: engagement_rate {
+  dimension: link_ctr {
     type: number
-    sql: ${TABLE}.engagement_rate ;;
+    description: "The number of clicks that your ad receives divided by the number of times your ad is shown"
+    sql: ${TABLE}.link_ctr ;;
   }
-
-  dimension: cvr {
+  dimension: post_engagement_adset {
     type: number
-    description: "Page Video Views devidev by The number of times your video was played at 95% of its length, including plays that skipped to this point"
-    sql: ${TABLE}.cvr ;;
+    description: "Post engagements are the total number of actions that people take involving your ads"
+    sql: ${TABLE}.post_engagement;;
   }
-
-  dimension: cpcv {
-    type: number
-    sql: ${TABLE}.cpcv ;;
-  }
-
   dimension: platform {
     type: string
-    description: "Facebook, Intagram etc"
+    description: "Which platform your ad was shown, for example on Facebook, Instagram, or Audience Network."
     sql: ${TABLE}.platform ;;
+  }
+  dimension: engagement_rate {
+    type: number
+    description: "The total engagement divided by total reach."
+    sql: ${TABLE}.engagement_rate ;;
+  }
+  dimension: cpe {
+    type: number
+    description: "Compares the cost to the total amount of engagements on a Facebook post that include: likes and reactions. comments. shares."
+    sql: ${TABLE}.cpe ;;
+  }
+  dimension: total_video_view {
+    type: number
+    description: "The number of times your video plays for at least 3 seconds"
+    sql: ${TABLE}.video_view ;;
+  }
+  dimension: vtr {
+    type: number
+    description: "The video p95 watched actions divided by impressions."
+    sql: ${TABLE}.vtr;;
+  }
+  dimension: cpcv {
+    type: number
+    description: "Pay for a video ad once the user watches a video in its entirety"
+    sql: ${TABLE}.cpcv ;;
   }
 }
