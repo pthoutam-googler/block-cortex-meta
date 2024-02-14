@@ -14,7 +14,7 @@ view: +adsetinsightsdailyagg {
     description: "The number of times your ads were on screen."
     sql: ${total_impressions_adset} ;;
   }
-  measure: average_of_cpm{
+  measure: average_of_cpm_test{
     type: average
     value_format_name: usd
     description: "The average cost for 1,000 impressions."
