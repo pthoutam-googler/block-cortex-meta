@@ -20,7 +20,7 @@ view: +adsetinsightsdailyagg {
     description: "The average cost for 1,000 impressions."
     sql: ${cpm} ;;
   }
-  measure: average_of_link_ctr{
+  measure: average_of_link_ctr_test{
     type: average
     value_format:"0.00\%"
     description: "The number of clicks that your ad receives divided by the number of times your ad is shown"
