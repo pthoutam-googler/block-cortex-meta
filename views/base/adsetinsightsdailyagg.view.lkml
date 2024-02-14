@@ -20,9 +20,9 @@ view: adsetinsightsdailyagg {
       ad.video_view,
       SAFE_DIVIDE( ad.video_p95_watched_actions_video_views, ad.total_impressions) * 100 as vtr,
       SAFE_DIVIDE( ad.total_spend, ad.video_p95_watched_actions_video_views) as cpcv
-     FROM `kittycorn-dev-epam.looker_reporting_meta.AdsetInsightsDailyAgg` ad
-     LEFT JOIN UNNEST(targeting_audiences) as targeting_audiences
-     LEFT JOIN UNNEST(platform_details) as platform_details
+     FROM `kittycorn-dev-epam.looker_reporting_meta.AdsetInsightsDailyAgg` ad,
+     UNNEST(targeting_audiences) as targeting_audiences,
+     UNNEST(platform_details) as platform_details
      INNER JOIN A USING(adset_id);;
   }
   dimension: total_impressions_adset {

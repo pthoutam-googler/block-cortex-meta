@@ -26,9 +26,9 @@ view: campaigninsightsdailyagg {
         campaign.page_like,
         SAFE_DIVIDE( campaign.total_spend, campaign.post_engagement) as cpe,
         SAFE_DIVIDE( campaign.total_spend, campaign.video_p95_watched_actions_video_views) as cpcv
-      from `kittycorn-dev-epam.looker_reporting_meta.CampaignInsightsDailyAgg` campaign
-      LEFT JOIN UNNEST(placement_details) as placement_details
-      LEFT JOIN UNNEST(country_details) as country_details;;
+      from `kittycorn-dev-epam.looker_reporting_meta.CampaignInsightsDailyAgg` campaign,
+      UNNEST(placement_details) as placement_details,
+      UNNEST(country_details) as country_details;;
   }
 
   dimension: date {
@@ -102,17 +102,15 @@ view: campaigninsightsdailyagg {
     description: "The number of people who saw your ads at least once. "
     sql: ${TABLE}.total_reach ;;
   }
-  dimension: campaign_start_time {
-    type: date_time
-    datatype: date
+  dimension: campaign_start_date {
+    type: date
     description: "Merging of start_times for the ad sets belonging to this campaign. At the campaign level, start_time is a read only field. You can setup start_time at the ad set level."
-    sql: CAST(${TABLE}.campaign_start_time AS datetime) ;;
+    sql: ${TABLE}.campaign_start_time;;
   }
-  dimension: campaign_stop_time {
-    type: date_time
-    datatype: date
+  dimension: campaign_stop_date {
+    type: date
     description: "Merging of stop_times for the ad sets belonging to this campaign. At the campaign level, stop_time is a read only field. You can setup stop_time at the ad set level."
-    sql: CAST(${TABLE}.campaign_stop_time AS datetime) ;;
+    sql: ${TABLE}.campaign_stop_time ;;
   }
   dimension: link_ctr {
     type: number
