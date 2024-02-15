@@ -25,7 +25,6 @@ view: campaigninsightsdailyagg {
         campaign.post_comments,
         campaign.page_like,
         SAFE_DIVIDE( campaign.total_spend, campaign.post_engagement) as cpe,
-        --new row
         SAFE_DIVIDE( campaign.total_spend, campaign.video_p95_watched_actions_video_views) as cpcv
       from `kittycorn-dev-epam.looker_reporting_meta.CampaignInsightsDailyAgg` campaign,
       UNNEST(placement_details) as placement_details,

@@ -1,4 +1,3 @@
----
 - dashboard: meta_dashboard
   title: Meta_Dashboard
   layout: newspaper
