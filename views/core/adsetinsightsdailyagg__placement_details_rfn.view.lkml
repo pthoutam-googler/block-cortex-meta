@@ -3,23 +3,27 @@
 
 #########################################################################################################
 
-include: "/views/base/adsetinsightsdailyagg.view"
+include: "/views/base/adsetinsightsdailyagg__placement_details.view"
 # The name of this view in Looker is "Campaign Insights"
-view: +adsetinsightsdailyagg {
-
-  ######### PRIMARY KEY #########
-  dimension: adsetinsightsdailyagg_pk {
-    type: string
-    primary_key: yes
-    hidden: yes
-    sql: CONCAT(${TABLE}.campaign_id, ${TABLE}.account_id, ${TABLE}.report_date) ;;
-  }
+view: +adsetinsightsdailyagg__placement_details {
 
   # A measure is a field that uses a SQL aggregate function.
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
   # A measure with sum only.
 
+  measure: sum_of_video_view_adset {
+    type: sum
+    value_format_name: "positive_m_or_k"
+    description: "The number of times your video plays for at least 3 seconds."
+    sql: ${video_view} ;;
+  }
+  measure: sum_of_video_p95_watched_actions_video_views_adset {
+    type: sum
+    value_format_name: "positive_m_or_k"
+    description: "The number of times your video was played at 95% of its length, including plays that skipped to this point."
+    sql: ${video_p95_watched_actions_video_views} ;;
+  }
   measure: sum_of_total_impressions_adset {
     type: sum
     value_format_name: "positive_m_or_k"
@@ -32,24 +36,18 @@ view: +adsetinsightsdailyagg {
     description: "The estimated total amount of money you've spent on your campaign, ad set or ad during its schedule. This metric is estimated."
     sql: ${total_spend} ;;
   }
-  measure: sum_of_link_clicks_adset {
-    type: sum
-    value_format_name: "positive_m_or_k"
-    description: "The number of clicks on links within the ad that led to advertiser-specified destinations, on or off Meta technologies."
-    sql: ${link_clicks} ;;
-  }
 
   #A measures with calculations
-  measure: cpm_adset{
+  measure: cpcv_adset{
     type: number
     value_format_name: usd
-    description: "The average cost for 1,000 impressions."
-    sql: SAFE_DIVIDE(${sum_of_total_spend_adset}, ${sum_of_total_impressions_adset} / 1000) ;;
+    description: "Pay for a video ad once the user watches a video in its entirety."
+    sql: SAFE_DIVIDE( ${sum_of_total_spend_adset}, ${sum_of_video_p95_watched_actions_video_views_adset}) ;;
   }
-  measure: link_ctr_adset{
+  measure: vtr_adset{
     type: number
     value_format:"0.00\%"
-    description: "The number of clicks that your ad receives divided by the number of times your ad is shown."
-    sql: SAFE_DIVIDE( ${sum_of_link_clicks_adset}, ${sum_of_total_impressions_adset}) * 100 ;;
+    description: "The video p95 watched actions divided by impressions."
+    sql: SAFE_DIVIDE( ${sum_of_video_p95_watched_actions_video_views_adset}, ${sum_of_total_impressions_adset}) * 100 ;;
   }
 }
