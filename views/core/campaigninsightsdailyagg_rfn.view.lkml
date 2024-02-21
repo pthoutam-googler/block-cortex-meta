@@ -107,15 +107,15 @@ view: +campaigninsightsdailyagg {
   }
   measure: engagement_rate{
     type: number
-    value_format:"0.00\%"
     description: "The total engagement divided by total reach."
-    sql: SAFE_DIVIDE( ${sum_of_post_engagement}, ${sum_of_total_reach}) * 100 ;;
+    sql: SAFE_DIVIDE( ${sum_of_post_engagement}, ${sum_of_total_reach}) ;;
+    value_format_name:percent_2
   }
   measure: link_ctr{
     type: number
-    value_format:"0.00\%"
     description: "The number of clicks that your ad receives divided by the number of times your ad is shown."
-    sql: SAFE_DIVIDE( ${sum_of_link_clicks}, ${sum_of_total_impressions}) * 100 ;;
+    sql: SAFE_DIVIDE( ${sum_of_link_clicks}, ${sum_of_total_impressions}) ;;
+    value_format_name:percent_2
   }
   measure: cpe{
     type: number
@@ -137,8 +137,8 @@ view: +campaigninsightsdailyagg {
   }
   measure: vtr{
     type: number
-    value_format:"0.00\%"
     description: "The video p95 watched actions divided by impressions."
-    sql: SAFE_DIVIDE( ${sum_of_video_p95_watched_actions_video_views}, ${sum_of_total_impressions}) * 100 ;;
+    sql: SAFE_DIVIDE( ${sum_of_video_p95_watched_actions_video_views}, ${sum_of_total_impressions}) ;;
+    value_format_name:percent_2
   }
 }

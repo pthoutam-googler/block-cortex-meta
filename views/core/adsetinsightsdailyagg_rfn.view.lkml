@@ -48,8 +48,8 @@ view: +adsetinsightsdailyagg {
   }
   measure: link_ctr_adset{
     type: number
-    value_format:"0.00\%"
     description: "The number of clicks that your ad receives divided by the number of times your ad is shown."
-    sql: SAFE_DIVIDE( ${sum_of_link_clicks_adset}, ${sum_of_total_impressions_adset}) * 100 ;;
+    sql: SAFE_DIVIDE( ${sum_of_link_clicks_adset}, ${sum_of_total_impressions_adset}) ;;
+    value_format_name:percent_2
   }
 }

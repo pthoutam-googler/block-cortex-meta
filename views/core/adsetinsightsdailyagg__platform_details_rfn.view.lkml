@@ -34,9 +34,9 @@ view: +adsetinsightsdailyagg__platform_details {
   #A measures with calculations
   measure: engagement_rate_adset{
     type: number
-    value_format:"0.00\%"
     description: "The total engagement divided by total reach."
-    sql: SAFE_DIVIDE( ${sum_of_post_engagement_adset}, ${sum_of_total_reach_adset}) * 100 ;;
+    sql: SAFE_DIVIDE( ${sum_of_post_engagement_adset}, ${sum_of_total_reach_adset}) ;;
+    value_format_name:percent_2
   }
   measure: cpe_adset{
     type: number

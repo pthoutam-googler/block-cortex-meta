@@ -1,11 +1,11 @@
 view: adsetinsightsdailyagg__targeting_audiences_sdt {
   derived_table: {
-    sql: select distinct
+    sql: SELECT DISTINCT
                adset_id,
-               STRING_AGG(distinct targeting_audiences.name, " + ") as adset_audience
-         from `kittycorn-dev-epam.looker_reporting_meta.AdsetInsightsDailyAgg` ad
-         left join UNNEST(targeting_audiences) as targeting_audiences
-         group by adset_id
+               STRING_AGG(DISTINCT targeting_audiences.name, ' + ') AS adset_audience
+         FROM `kittycorn-dev-epam.looker_reporting_meta.AdsetInsightsDailyAgg`
+         LEFT JOIN UNNEST(targeting_audiences) AS targeting_audiences
+         GROUP BY adset_id
          ;;
 
   }

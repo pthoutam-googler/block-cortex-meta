@@ -46,8 +46,8 @@ view: +adsetinsightsdailyagg__placement_details {
   }
   measure: vtr_adset{
     type: number
-    value_format:"0.00\%"
     description: "The video p95 watched actions divided by impressions."
-    sql: SAFE_DIVIDE( ${sum_of_video_p95_watched_actions_video_views_adset}, ${sum_of_total_impressions_adset}) * 100 ;;
+    sql: SAFE_DIVIDE( ${sum_of_video_p95_watched_actions_video_views_adset}, ${sum_of_total_impressions_adset}) ;;
+    value_format_name:percent_2
   }
 }
