@@ -17,12 +17,19 @@ explore: campaigninsightsdailyagg {
     sql: LEFT JOIN UNNEST(${campaigninsightsdailyagg.placement_details}) as campaigninsightsdailyagg__placement_details ;;
     relationship: one_to_many
   }
+  join: campaign {
+    view_label: "Campaign"
+    type: left_outer
+    sql_on: ${campaigninsightsdailyagg.campaign_name} = ${campaign.name} ;;
+    relationship: many_to_one
+  }
 }
 
 explore: adsetinsightsdailyagg {
   label: "Adset Insights"
   join: adsetinsightsdailyagg__targeting_audiences_sdt {
     view_label: "Adset Insights Daily Agg: Targeting Audiences"
+    type: left_outer
     sql_on: ${adsetinsightsdailyagg__targeting_audiences_sdt.adset_id} = ${adsetinsightsdailyagg.adset_id} ;;
     relationship: one_to_many
   }
@@ -36,5 +43,7 @@ explore: adsetinsightsdailyagg {
     sql: LEFT JOIN UNNEST(${adsetinsightsdailyagg.platform_details}) as adsetinsightsdailyagg__platform_details ;;
     relationship: one_to_many
   }
-
 }
+
+explore: campaign {
+  }
