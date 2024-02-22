@@ -12,7 +12,7 @@ view: +adsetinsightsdailyagg__platform_details {
     type: string
     primary_key: yes
     hidden: yes
-    sql: CONCAT(${adsetinsightsdailyagg.adset_id}, ${adsetinsightsdailyagg.date}) ;;
+    sql: CONCAT(CAST(${adsetinsightsdailyagg.adset_id} AS STRING), CAST(${adsetinsightsdailyagg.date} AS STRING), CAST(${platform} AS STRING)) ;;
   }
 
   # A measure is a field that uses a SQL aggregate function.

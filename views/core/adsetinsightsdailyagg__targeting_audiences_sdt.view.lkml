@@ -12,11 +12,13 @@ view: adsetinsightsdailyagg__targeting_audiences_sdt {
          ;;
 
   }
+
+  ######### PRIMARY KEY #########
   dimension: adsetinsightsdailyagg__targeting_audiences_pk {
     type: string
     primary_key: yes
     hidden: yes
-    sql: CONCAT(${TABLE}.adset_id, ${TABLE}.adset_name) ;;
+    sql: CONCAT(${TABLE}.adset_id) ;;
   }
   dimension: adset_id {
     type: number

@@ -1,7 +1,6 @@
 view: campaigninsightsdailyagg__placement_details {
-  sql_table_name: `@{GCP_PROJECT_ID}.@{REPORTING_DATASET}.CampaignInsightsDailyAgg` ;;
 
-  dimension: campaign_insights_daily_agg__placement_details {
+  dimension: campaigninsightsdailyagg__placement_details {
     type: string
     hidden: yes
     sql: campaign_insights_daily_agg__placement_details ;;

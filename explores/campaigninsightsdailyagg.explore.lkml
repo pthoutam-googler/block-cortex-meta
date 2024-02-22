@@ -28,7 +28,7 @@ explore: adsetinsightsdailyagg {
   }
   join: adsetinsightsdailyagg__placement_details {
     view_label: "Adset Insights Daily Agg: Placement Details"
-    sql: LEFT JOIN UNNEST(${adsetinsightsdailyagg.placement_details}) as adsetinsightsdailyagg__placement_details ;;
+    sql: LEFT JOIN UNNEST(${adsetinsightsdailyagg.placement_details}) as adsetinsightsdailyagg__placement_details WITH OFFSET as adsetinsightsdailyagg__placement_details_offset;;
     relationship: one_to_many
   }
   join: adsetinsightsdailyagg__platform_details {

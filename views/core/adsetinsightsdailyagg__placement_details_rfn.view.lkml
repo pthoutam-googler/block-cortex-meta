@@ -8,12 +8,11 @@ include: "/views/base/adsetinsightsdailyagg__placement_details.view"
 view: +adsetinsightsdailyagg__placement_details {
 
   ######### PRIMARY KEY #########
-
   dimension: adsetinsightsdailyagg__placement_details_pk {
     type: string
     primary_key: yes
     hidden: yes
-    sql: CONCAT(${adsetinsightsdailyagg.adset_id}, ${adsetinsightsdailyagg.date}) ;;
+    sql: CONCAT(CAST(${adsetinsightsdailyagg.adset_id} AS STRING), CAST(${adsetinsightsdailyagg.date} AS STRING), CAST(${offset} AS STRING)) ;;
   }
 
   # A measure is a field that uses a SQL aggregate function.

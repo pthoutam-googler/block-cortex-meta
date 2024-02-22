@@ -1,11 +1,5 @@
 view: adsetinsightsdailyagg__placement_details {
-  sql_table_name: `@{GCP_PROJECT_ID}.@{REPORTING_DATASET}.AdsetInsightsDailyAgg` ;;
 
-  dimension: adset_insights_daily_agg__placement_details {
-    type: string
-    hidden: yes
-    sql: adset_insights_daily_agg__placement_details ;;
-  }
   dimension: video_view {
     type: number
     sql: ${TABLE}.video_view ;;
@@ -25,5 +19,10 @@ view: adsetinsightsdailyagg__placement_details {
   dimension: platform {
     type: string
     sql: publisher_platform ;;
+  }
+  dimension: offset {
+    type: number
+    hidden: yes
+    sql: adsetinsightsdailyagg__placement_details_offset;;
   }
 }
