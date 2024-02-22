@@ -10,7 +10,7 @@ view: adsetinsightsdailyagg__platform_details {
     type: number
     sql: ${TABLE}.post_engagement ;;
   }
-  dimension: publisher_platform {
+  dimension: platform {
     type: string
     sql: publisher_platform ;;
   }

@@ -22,7 +22,7 @@ view: adsetinsightsdailyagg__placement_details {
     type: number
     sql: ${TABLE}.total_spend ;;
   }
-  dimension: publisher_platform {
+  dimension: platform {
     type: string
     sql: publisher_platform ;;
   }

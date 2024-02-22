@@ -23,6 +23,11 @@ view: adsetinsightsdailyagg {
     type: string
     sql: ${TABLE}.campaign_name ;;
   }
+  dimension: campaign_id {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.campaign_id ;;
+  }
   dimension: post_engagement {
     type: number
     sql: ${TABLE}.post_engagement ;;

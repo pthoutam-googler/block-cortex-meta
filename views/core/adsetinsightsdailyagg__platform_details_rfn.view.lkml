@@ -4,8 +4,16 @@
 #########################################################################################################
 
 include: "/views/base/adsetinsightsdailyagg__platform_details.view"
-# The name of this view in Looker is "Campaign Insights"
+# The name of this view in Looker is "Adset Insights"
 view: +adsetinsightsdailyagg__platform_details {
+
+  ######### PRIMARY KEY #########
+  dimension: adsetinsightsdailyagg__platform_details_pk {
+    type: string
+    primary_key: yes
+    hidden: yes
+    sql: CONCAT(${adsetinsightsdailyagg.adset_id}, ${adsetinsightsdailyagg.date}) ;;
+  }
 
   # A measure is a field that uses a SQL aggregate function.
   # measures for this dimension, but you can also add measures of many different aggregates.

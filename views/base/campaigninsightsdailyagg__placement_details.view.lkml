@@ -6,11 +6,11 @@ view: campaigninsightsdailyagg__placement_details {
     hidden: yes
     sql: campaign_insights_daily_agg__placement_details ;;
   }
-  dimension: platform_position {
+  dimension: placement {
     type: string
     sql: platform_position ;;
   }
-  dimension: publisher_platform {
+  dimension: platform {
     type: string
     sql: publisher_platform ;;
   }

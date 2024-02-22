@@ -8,9 +8,20 @@ view: campaigninsightsdailyagg {
     datatype: date
     sql: ${TABLE}.report_date ;;
   }
+
   dimension: campaign_name {
     type: string
     sql: ${TABLE}.campaign_name ;;
+  }
+  dimension: campaign_id {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.campaign_id ;;
+  }
+  dimension: report_date {
+    type: date
+    hidden: yes
+    sql: ${TABLE}.report_date ;;
   }
   dimension: total_impressions {
     type: number
