@@ -1,19 +1,19 @@
 view: adsetinsightsdailyagg__platform_details {
 
-  dimension: post_engagement {
+  dimension: post_engagements {
     type: number
-    sql: ${TABLE}.post_engagement ;;
+    sql: ${TABLE}.post_engagements ;;
   }
   dimension: platform {
     type: string
     sql: publisher_platform ;;
   }
-  dimension: total_reach {
+  dimension: reach {
     type: number
-    sql: ${TABLE}.total_reach ;;
+    sql: ${TABLE}.reach ;;
   }
-  dimension: total_spend {
+  dimension: spend {
     type: number
-    sql: ${TABLE}.total_spend ;;
+    sql: ${TABLE}.spend ;;
   }
 }

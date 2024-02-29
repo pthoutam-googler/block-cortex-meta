@@ -18,34 +18,34 @@ view: campaigninsightsdailyagg {
     hidden: yes
     sql: ${TABLE}.campaign_id ;;
   }
+  dimension: campaign_status {
+    type: string
+    sql: ${TABLE}.campaign_status ;;
+  }
   dimension: report_date {
     type: date
     hidden: yes
     sql: ${TABLE}.report_date ;;
   }
-  dimension: total_impressions {
+  dimension: impressions {
     type: number
-    sql: ${TABLE}.total_impressions ;;
+    sql: ${TABLE}.impressions ;;
   }
-  dimension: total_video_view {
+  dimension: video_views {
     type: number
-    sql: ${TABLE}.video_view ;;
+    sql: ${TABLE}.video_views ;;
   }
-  dimension: total_spend {
+  dimension: spend {
     type: number
-    sql: ${TABLE}.total_spend ;;
+    sql: ${TABLE}.spend ;;
   }
-  dimension: post_engagement {
+  dimension: post_engagements{
     type: number
-    sql: ${TABLE}.post_engagement ;;
+    sql: ${TABLE}.post_engagements ;;
   }
-  dimension: total_clicks {
+  dimension: reach {
     type: number
-    sql: ${TABLE}.link_clicks ;;
-  }
-  dimension: total_reach {
-    type: number
-    sql: ${TABLE}.total_reach ;;
+    sql: ${TABLE}.reach ;;
   }
   dimension: campaign_start_date {
     type: date
@@ -59,25 +59,25 @@ view: campaigninsightsdailyagg {
     hidden: yes
     sql: ${TABLE}.placement_details ;;
   }
-  dimension: shares {
+  dimension: post_shares {
     type: number
     sql: ${TABLE}.post_shares ;;
   }
-  dimension: reactions {
+  dimension: post_reactions {
     type: number
-    sql: ${TABLE}.post_reaction ;;
+    sql: ${TABLE}.post_reactions ;;
   }
-  dimension: saves {
+  dimension: post_saves {
     type: number
-    sql: ${TABLE}.post_save ;;
+    sql: ${TABLE}.post_saves ;;
   }
-  dimension: comments {
+  dimension: post_comments {
     type: number
     sql: ${TABLE}.post_comments ;;
   }
   dimension: page_likes {
     type: number
-    sql: ${TABLE}.page_like ;;
+    sql: ${TABLE}.page_likes ;;
   }
   dimension: video_p95_watched_actions_video_views {
     type: number

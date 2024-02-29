@@ -11,13 +11,13 @@ view: adsetinsightsdailyagg {
     hidden: yes
     sql: ${TABLE}.adset_id ;;
   }
-  dimension: total_impressions {
+  dimension: impressions {
     type: number
-    sql: ${TABLE}.total_impressions ;;
+    sql: ${TABLE}.impressions ;;
   }
-  dimension: total_spend {
+  dimension: spend {
     type: number
-    sql: ${TABLE}.total_spend ;;
+    sql: ${TABLE}.spend ;;
   }
   dimension: campaign_name {
     type: string
@@ -28,13 +28,13 @@ view: adsetinsightsdailyagg {
     hidden: yes
     sql: ${TABLE}.campaign_id ;;
   }
-  dimension: post_engagement {
+  dimension: post_engagements {
     type: number
-    sql: ${TABLE}.post_engagement ;;
+    sql: ${TABLE}.post_engagements ;;
   }
-  dimension: video_view {
+  dimension: video_views {
     type: number
-    sql: ${TABLE}.video_view ;;
+    sql: ${TABLE}.video_views ;;
   }
   dimension: link_clicks {
     type: number

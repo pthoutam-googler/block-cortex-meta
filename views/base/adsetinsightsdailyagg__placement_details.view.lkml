@@ -1,20 +1,20 @@
 view: adsetinsightsdailyagg__placement_details {
 
-  dimension: video_view {
+  dimension: video_views {
     type: number
-    sql: ${TABLE}.video_view ;;
+    sql: ${TABLE}.video_views ;;
   }
   dimension: video_p95_watched_actions_video_views {
     type: number
     sql: ${TABLE}.video_p95_watched_actions_video_views ;;
   }
-  dimension: total_impressions {
+  dimension: impressions {
     type: number
-    sql: ${TABLE}.total_impressions ;;
+    sql: ${TABLE}.impressions ;;
   }
-  dimension: total_spend {
+  dimension: spend {
     type: number
-    sql: ${TABLE}.total_spend ;;
+    sql: ${TABLE}.spend ;;
   }
   dimension: platform {
     type: string

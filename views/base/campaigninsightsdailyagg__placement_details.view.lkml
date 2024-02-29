@@ -13,21 +13,21 @@ view: campaigninsightsdailyagg__placement_details {
     type: string
     sql: publisher_platform ;;
   }
-  dimension: total_impressions {
+  dimension: impressions {
     type: number
-    sql: ${TABLE}.total_impressions ;;
+    sql: ${TABLE}.impressions ;;
   }
-  dimension: total_spend {
+  dimension: spend {
     type: number
-    sql: ${TABLE}.total_spend ;;
+    sql: ${TABLE}.spend ;;
   }
   dimension: link_clicks {
     type: number
     sql: ${TABLE}.link_clicks ;;
   }
-  dimension: video_view {
+  dimension: video_views {
     type: number
-    sql: ${TABLE}.video_view ;;
+    sql: ${TABLE}.video_views ;;
   }
   dimension: video_p95_watched_actions_video_views {
     type: number

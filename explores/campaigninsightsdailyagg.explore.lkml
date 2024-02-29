@@ -14,7 +14,7 @@ explore: campaigninsightsdailyagg {
   label: "Campaign Insights"
   join: campaigninsightsdailyagg__placement_details {
     view_label: "Campaign Insights Daily Agg: Placement Details"
-    sql: LEFT JOIN UNNEST(${campaigninsightsdailyagg.placement_details}) as campaigninsightsdailyagg__placement_details ;;
+    sql: LEFT JOIN UNNEST(${campaigninsightsdailyagg.placement_details}) AS campaigninsightsdailyagg__placement_details ;;
     relationship: one_to_many
   }
   join: campaign {
@@ -35,12 +35,12 @@ explore: adsetinsightsdailyagg {
   }
   join: adsetinsightsdailyagg__placement_details {
     view_label: "Adset Insights Daily Agg: Placement Details"
-    sql: LEFT JOIN UNNEST(${adsetinsightsdailyagg.placement_details}) as adsetinsightsdailyagg__placement_details WITH OFFSET as adsetinsightsdailyagg__placement_details_offset;;
+    sql: LEFT JOIN UNNEST(${adsetinsightsdailyagg.placement_details}) AS adsetinsightsdailyagg__placement_details WITH OFFSET AS adsetinsightsdailyagg__placement_details_offset;;
     relationship: one_to_many
   }
   join: adsetinsightsdailyagg__platform_details {
     view_label: "Adset Insights Daily Agg: Platform Details"
-    sql: LEFT JOIN UNNEST(${adsetinsightsdailyagg.platform_details}) as adsetinsightsdailyagg__platform_details ;;
+    sql: LEFT JOIN UNNEST(${adsetinsightsdailyagg.platform_details}) AS adsetinsightsdailyagg__platform_details ;;
     relationship: one_to_many
   }
 }
