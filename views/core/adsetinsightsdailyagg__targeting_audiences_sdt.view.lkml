@@ -22,7 +22,7 @@ view: adsetinsightsdailyagg__targeting_audiences_sdt {
   }
   dimension: adset_id {
     type: number
-    description: "The unique ID of the ad set you're viewing in reporting. "
+    description: "The unique ID of the ad set you're viewing in reporting."
     hidden: yes
     sql: ${TABLE}.adset_id ;;
   }

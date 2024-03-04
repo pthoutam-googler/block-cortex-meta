@@ -29,7 +29,7 @@ view: +adsetinsightsdailyagg__platform_details {
   measure: sum_of_reach_adset {
     type: sum
     value_format_name: "positive_m_or_k"
-    description: "The number of people who saw your ads at least once. "
+    description: "The number of people who saw your ads at least once."
     sql: ${reach} ;;
   }
   measure: sum_of_spend_adset {

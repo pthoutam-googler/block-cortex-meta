@@ -56,7 +56,7 @@ view: +campaigninsightsdailyagg {
   measure: sum_of_reach {
     type: sum
     value_format_name: "positive_m_or_k"
-    description: "The number of people who saw your ads at least once. "
+    description: "The number of people who saw your ads at least once."
     sql: ${reach} ;;
   }
   measure: sum_of_post_shares {
