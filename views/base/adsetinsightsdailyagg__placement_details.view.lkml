@@ -23,6 +23,6 @@ view: adsetinsightsdailyagg__placement_details {
   dimension: offset {
     type: number
     hidden: yes
-    sql: adsetinsightsdailyagg__placement_details_offset;;
+    sql: adsetinsightsdailyagg__placement_details_offset ;;
   }
 }

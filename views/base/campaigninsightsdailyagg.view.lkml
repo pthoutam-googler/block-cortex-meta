@@ -49,7 +49,7 @@ view: campaigninsightsdailyagg {
   }
   dimension: campaign_start_date {
     type: date
-    sql: ${TABLE}.campaign_start_time;;
+    sql: ${TABLE}.campaign_start_time ;;
   }
   dimension: campaign_stop_date {
     type: date
