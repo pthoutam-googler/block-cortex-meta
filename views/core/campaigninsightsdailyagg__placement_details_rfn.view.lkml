@@ -75,4 +75,101 @@ view: +campaigninsightsdailyagg__placement_details {
     description: "Pay for a video ad once the user watches a video in its entirety."
     sql: SAFE_DIVIDE(${sum_of_spend_placement}, ${sum_of_video_p95_watched_actions_video_views_placement}) ;;
   }
+
+ dimension: platformplacementgroup {
+  type: string
+  sql: CASE
+      WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='feed' THEN 'Facebook Feed'
+
+     WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='facebook_reels' THEN 'Facebook Reels'
+
+    WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='facebook_stories' THEN 'Facebook Stories'
+
+    WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='instream_video' THEN 'Ads on Facebook Reels'
+
+    WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='search' THEN 'Facebook Search Results'
+
+    WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='marketplace' THEN 'Facebook Marketplace'
+
+    WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='instream_video' THEN 'Facebook in-stream video'
+
+    WHEN ${TABLE}.publisher_platform='instagram' AND ${TABLE}.platform_position ='feed' THEN 'Instagram Feed'
+
+    WHEN ${TABLE}.publisher_platform='instagram'  AND ${TABLE}.platform_position ='instagram_explore' THEN 'Instagram Explore'
+
+    WHEN ${TABLE}.publisher_platform='instagram'  AND ${TABLE}.platform_position ='instagram_explore_grid_home' THEN 'Instagram Explore Home'
+
+    WHEN ${TABLE}.publisher_platform='instagram'  AND ${TABLE}.platform_position ='instagram_profile_feed' THEN 'Instagram Profile Feed'
+
+    WHEN ${TABLE}.publisher_platform='instagram'  AND ${TABLE}.platform_position ='instagram_reels' THEN 'Instagram Reels'
+
+    WHEN ${TABLE}.publisher_platform='instagram' AND ${TABLE}.platform_position ='instagram_stories' THEN 'Instagram Stories'
+
+    WHEN ${TABLE}.publisher_platform='audience_network'  AND ${TABLE}.platform_position ='an_classic' THEN 'Audience Network Classic'
+
+    WHEN ${TABLE}.publisher_platform='audience_network' AND ${TABLE}.platform_position ='rewarded_video' THEN 'Audience Network Rewarded video'
+
+    ELSE null
+
+    END  ;;
+}
+
+
+  dimension: platformplacementcolor {
+    sql: ${platformplacementgroup} ;;
+    html: {% if value == 'Facebook Feed' %}
+      <p style="color: black; background-color: #deffd7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
+
+    {% elsif value == 'Facebook Reels' %}
+      <p style="color: black; background-color:  #deffd7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
+     {% elsif value == 'Facebook Stories' %}
+      <p style="color: black; background-color:  #deffd7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
+       {% elsif value == 'Ads on Facebook Reels' %}
+      <p style="color: black; background-color:  #deffd7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
+       {% elsif value == 'Facebook Search Results' %}
+      <p style="color: black; background-color:  #deffd7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
+       {% elsif value == 'Facebook Marketplace' %}
+      <p style="color: black; background-color:  #deffd7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
+       {% elsif value == 'Facebook in-stream video' %}
+      <p style="color: black; background-color:  #deffd7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
+
+       {% elsif value == 'Instagram Feed' %}
+      <p style="color: black; background-color: #d3edfc; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
+       {% elsif value == 'Instagram Explore' %}
+      <p style="color: black; background-color: #d3edfc; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
+       {% elsif value == 'Instagram Explore Home' %}
+      <p style="color: black; background-color: #d3edfc; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
+       {% elsif value == 'Instagram Profile Feed' %}
+      <p style="color: black; background-color: #d3edfc; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
+       {% elsif value == 'Instagram Reels' %}
+      <p style="color: black; background-color: #d3edfc; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
+       {% elsif value == 'Instagram Stories' %}
+      <p style="color: black; background-color: #d3edfc; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
+       {% elsif value == 'Audience Network Classic' %}
+      <p style="color: black; background-color: #fff9a3; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
+       {% elsif value == 'Audience Network Rewarded video' %}
+      <p style="color: black; background-color: #fff9a3; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
+
+
+    {% else %}
+      <p style="color: black; background-color: lightpink; font-size:100%; text-align:center">{{ rendered_value }}</p>
+    {% endif %}
+;;
+  }
+
 }
