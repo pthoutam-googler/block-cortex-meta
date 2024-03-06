@@ -118,26 +118,26 @@ view: +campaigninsightsdailyagg__placement_details {
   dimension: platformplacementcolor {
     sql: ${platformplacementgroup} ;;
     html: {% if value == 'Facebook Feed' %}
-      <p style="color: black; background-color: #A3E4D7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color:#ABEBC6; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
 
     {% elsif value == 'Facebook Reels' %}
-      <p style="color: black; background-color: #A3E4D7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color: #ABEBC6 font-size:100%; text-align:center">{{ rendered_value }}</p>
 
      {% elsif value == 'Facebook Stories' %}
-      <p style="color: black; background-color: #A3E4D7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color: #ABEBC6; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
        {% elsif value == 'Facebook Reels Ads' %}
-      <p style="color: black; background-color:  #A3E4D7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color:  #ABEBC6; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
        {% elsif value == 'Facebook Search Results' %}
-      <p style="color: black; background-color:  #A3E4D7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color:  #ABEBC6; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
        {% elsif value == 'Facebook Marketplace' %}
-      <p style="color: black; background-color:  #A3E4D7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color: #ABEBC6; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
        {% elsif value == 'Facebook in-stream video' %}
-      <p style="color: black; background-color:  #A3E4D7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color:  #ABEBC6; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
 
        {% elsif value == 'Instagram Feed' %}
@@ -162,7 +162,7 @@ view: +campaigninsightsdailyagg__placement_details {
       <p style="color: black; background-color: #F9E79F; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
        {% elsif value == 'Audience Network Rewarded Video' %}
-      <p style="color: black; background-color: #F9E79F; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color:  #F9E79F; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
 
 
