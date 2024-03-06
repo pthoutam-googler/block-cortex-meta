@@ -85,7 +85,7 @@ view: +campaigninsightsdailyagg__placement_details {
 
     WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='facebook_stories' THEN 'Facebook Stories'
 
-    WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='instream_video' THEN 'Ads on Facebook Reels'
+    WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='instream_video' THEN 'Facebook Reels Ads'
 
     WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='search' THEN 'Facebook Search Results'
 
@@ -118,51 +118,51 @@ view: +campaigninsightsdailyagg__placement_details {
   dimension: platformplacementcolor {
     sql: ${platformplacementgroup} ;;
     html: {% if value == 'Facebook Feed' %}
-      <p style="color: black; background-color: #deffd7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color: #EAFAF1; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
 
     {% elsif value == 'Facebook Reels' %}
-      <p style="color: black; background-color:  #deffd7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color: #EAFAF1; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
      {% elsif value == 'Facebook Stories' %}
-      <p style="color: black; background-color:  #deffd7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color: #EAFAF1; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
-       {% elsif value == 'Ads on Facebook Reels' %}
-      <p style="color: black; background-color:  #deffd7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+       {% elsif value == 'Facebook Reels Ads' %}
+      <p style="color: black; background-color:  #EAFAF1; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
        {% elsif value == 'Facebook Search Results' %}
-      <p style="color: black; background-color:  #deffd7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color:  #EAFAF1; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
        {% elsif value == 'Facebook Marketplace' %}
-      <p style="color: black; background-color:  #deffd7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color:  #EAFAF1; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
        {% elsif value == 'Facebook in-stream video' %}
-      <p style="color: black; background-color:  #deffd7; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color:  #EAFAF1; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
 
        {% elsif value == 'Instagram Feed' %}
-      <p style="color: black; background-color: #d3edfc; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color: #EBF5FB; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
        {% elsif value == 'Instagram Explore' %}
-      <p style="color: black; background-color: #d3edfc; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color: #EBF5FB; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
        {% elsif value == 'Instagram Explore Home' %}
-      <p style="color: black; background-color: #d3edfc; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color: #EBF5FB; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
        {% elsif value == 'Instagram Profile Feed' %}
-      <p style="color: black; background-color: #d3edfc; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color: #EBF5FB; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
        {% elsif value == 'Instagram Reels' %}
-      <p style="color: black; background-color: #d3edfc; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color: #EBF5FB; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
        {% elsif value == 'Instagram Stories' %}
-      <p style="color: black; background-color: #d3edfc; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color: #EBF5FB ; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
        {% elsif value == 'Audience Network Classic' %}
-      <p style="color: black; background-color: #fff9a3; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color: #FEF9E7; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
        {% elsif value == 'Audience Network Rewarded video' %}
-      <p style="color: black; background-color: #fff9a3; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <p style="color: black; background-color: #FEF9E7; font-size:100%; text-align:center">{{ rendered_value }}</p>
 
 
 
