@@ -15,6 +15,11 @@ view: +adsetinsightsdailyagg__placement_details {
     sql: CONCAT(CAST(${adsetinsightsdailyagg.adset_id} AS STRING), CAST(${adsetinsightsdailyagg.date} AS STRING), CAST(${offset} AS STRING)) ;;
   }
 
+  dimension: platform_proper {
+    type: string
+    sql: INITCAP(${adsetinsightsdailyagg__placement_details.platform}) ;;
+  }
+
 
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
   # A measure with sum only.
