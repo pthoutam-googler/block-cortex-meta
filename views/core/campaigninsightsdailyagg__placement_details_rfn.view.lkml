@@ -83,7 +83,7 @@ view: +campaigninsightsdailyagg__placement_details {
 
     WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='facebook_stories' THEN 'Facebook Stories'
 
-    WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='instream_video' THEN 'Facebook Reels Ads'
+    WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='instream_video' THEN 'Ads on Facebook Reels'
 
     WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='search' THEN 'Facebook Search Results'
 
@@ -110,5 +110,7 @@ view: +campaigninsightsdailyagg__placement_details {
     ELSE null
 
     END  ;;
+  order_by_field:platform
+
 }
 }
