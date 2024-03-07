@@ -77,39 +77,23 @@ view: +campaigninsightsdailyagg__placement_details {
  dimension: platformplacementgroup {
   type: string
   sql: CASE
-    WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='feed' THEN 'Facebook Feed'
-
-    WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='facebook_reels' THEN 'Facebook Reels'
-
-    WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='facebook_stories' THEN 'Facebook Stories'
-
-    WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='instream_video' THEN 'Ads on Facebook Reels'
-
-    WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='search' THEN 'Facebook Search Results'
-
-    WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='marketplace' THEN 'Facebook Marketplace'
-
-    WHEN ${TABLE}.publisher_platform='facebook' AND ${TABLE}.platform_position ='instream_video' THEN 'Facebook in-stream video'
-
-    WHEN ${TABLE}.publisher_platform='instagram' AND ${TABLE}.platform_position ='feed' THEN 'Instagram Feed'
-
-    WHEN ${TABLE}.publisher_platform='instagram'  AND ${TABLE}.platform_position ='instagram_explore' THEN 'Instagram Explore'
-
-    WHEN ${TABLE}.publisher_platform='instagram'  AND ${TABLE}.platform_position ='instagram_explore_grid_home' THEN 'Instagram Explore Home'
-
-    WHEN ${TABLE}.publisher_platform='instagram'  AND ${TABLE}.platform_position ='instagram_profile_feed' THEN 'Instagram Profile Feed'
-
-    WHEN ${TABLE}.publisher_platform='instagram'  AND ${TABLE}.platform_position ='instagram_reels' THEN 'Instagram Reels'
-
-    WHEN ${TABLE}.publisher_platform='instagram' AND ${TABLE}.platform_position ='instagram_stories' THEN 'Instagram Stories'
-
-    WHEN ${TABLE}.publisher_platform='audience_network'  AND ${TABLE}.platform_position ='an_classic' THEN 'Audience Network Classic'
-
-    WHEN ${TABLE}.publisher_platform='audience_network' AND ${TABLE}.platform_position ='rewarded_video' THEN 'Audience Network Rewarded Video'
-
-    ELSE null
-
-    END  ;;
+    WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'feed' THEN 'Facebook Feed'
+    WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'facebook_reels' THEN 'Facebook Reels'
+    WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'facebook_stories' THEN 'Facebook Stories'
+    WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'instream_video' THEN 'Ads on Facebook Reels'
+    WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'search' THEN 'Facebook Search Results'
+    WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'marketplace' THEN 'Facebook Marketplace'
+    WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'instream_video' THEN 'Facebook in-stream video'
+    WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'feed' THEN 'Instagram Feed'
+    WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'instagram_explore' THEN 'Instagram Explore'
+    WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'instagram_explore_grid_home' THEN 'Instagram Explore Home'
+    WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'instagram_profile_feed' THEN 'Instagram Profile Feed'
+    WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'instagram_reels' THEN 'Instagram Reels'
+    WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'instagram_stories' THEN 'Instagram Stories'
+    WHEN ${TABLE}.publisher_platform = 'audience_network' AND ${TABLE}.platform_position = 'an_classic' THEN 'Audience Network Classic'
+    WHEN ${TABLE}.publisher_platform = 'audience_network' AND ${TABLE}.platform_position = 'rewarded_video' THEN 'Audience Network Rewarded Video'
+    ELSE NULL
+    END ;;
   order_by_field:platform
 
 }
