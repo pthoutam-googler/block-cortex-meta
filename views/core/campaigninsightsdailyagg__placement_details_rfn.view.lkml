@@ -95,6 +95,5 @@ view: +campaigninsightsdailyagg__placement_details {
     ELSE NULL
     END ;;
   order_by_field:platform
-
-}
+  }
 }
