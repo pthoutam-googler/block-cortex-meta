@@ -443,7 +443,7 @@
     defaults_version: 1
     note_state: collapsed
     note_display: above
-    note_text: 'Active Campaigns based on date range including start and end dates.
+    note_text: 'Active Campaigns based on date range showing Campaign Start and End dates.
 
       '
     listen:
