@@ -49,6 +49,6 @@ view: +adsetinsightsdailyagg {
     type: number
     description: "The number of clicks that your ad receives divided by the number of times your ad is shown."
     sql: SAFE_DIVIDE(${sum_of_link_clicks_adset}, ${sum_of_impressions_adset}) ;;
-    value_format_name:percent_2
+    value_format_name: percent_2
   }
 }

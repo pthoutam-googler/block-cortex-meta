@@ -60,13 +60,13 @@ view: +campaigninsightsdailyagg__placement_details {
     type: number
     description: "The number of clicks that your ad receives divided by the number of times your ad is shown."
     sql: SAFE_DIVIDE(${sum_of_link_clicks_placement}, ${sum_of_impressions_placement}) ;;
-    value_format_name:percent_2
+    value_format_name: percent_2
   }
   measure: vtr_placement{
     type: number
     description: "The video p95 watched actions divided by impressions."
     sql: SAFE_DIVIDE(${sum_of_video_p95_watched_actions_video_views_placement}, ${sum_of_impressions_placement}) ;;
-    value_format_name:percent_2
+    value_format_name: percent_2
   }
   measure: cpcv_placement{
     type: number

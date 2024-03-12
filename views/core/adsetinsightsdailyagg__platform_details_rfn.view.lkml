@@ -47,12 +47,12 @@ view: +adsetinsightsdailyagg__platform_details {
     type: number
     description: "The total engagement divided by total reach."
     sql: SAFE_DIVIDE(${sum_of_post_engagements_adset}, ${sum_of_reach_adset}) ;;
-    value_format_name:percent_2
+    value_format_name: percent_2
   }
   measure: cpe_adset{
     type: number
-    value_format_name: usd
     description: "Compares the cost to the total amount of engagements on a Facebook post that include: likes and reactions. comments. shares."
     sql: SAFE_DIVIDE(${sum_of_spend_adset}, ${sum_of_post_engagements_adset}) ;;
+    value_format_name: percent_2
   }
 }

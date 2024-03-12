@@ -111,19 +111,19 @@ view: +campaigninsightsdailyagg {
     type: number
     description: "The total engagement divided by total reach."
     sql: SAFE_DIVIDE(${sum_of_post_engagements}, ${sum_of_reach}) ;;
-    value_format_name:percent_2
+    value_format_name: percent_2
   }
   measure: link_ctr{
     type: number
     description: "The number of clicks that your ad receives divided by the number of times your ad is shown."
     sql: SAFE_DIVIDE(${sum_of_link_clicks}, ${sum_of_impressions}) ;;
-    value_format_name:percent_2
+    value_format_name: percent_2
   }
   measure: cpe{
     type: number
-    value_format_name: usd
     description: "Compares the cost to the total amount of engagements on a Facebook post that include: likes and reactions. comments. shares."
     sql: SAFE_DIVIDE(${sum_of_spend}, ${sum_of_post_engagements}) ;;
+    value_format_name: percent_2
   }
   measure: cpcv{
     type: number
@@ -141,6 +141,6 @@ view: +campaigninsightsdailyagg {
     type: number
     description: "The video p95 watched actions divided by impressions."
     sql: SAFE_DIVIDE(${sum_of_video_p95_watched_actions_video_views}, ${sum_of_impressions}) ;;
-    value_format_name:percent_2
+    value_format_name: percent_2
   }
 }
