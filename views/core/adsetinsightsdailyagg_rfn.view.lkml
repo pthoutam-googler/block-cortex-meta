@@ -1,65 +1,54 @@
-include: "/views/base/adsetinsightsdailyagg.view"
+#########################################################################################################
+# Purpose: Contains additional measures and calculations from CampaignInsightsDailyAgg table.
 
+#########################################################################################################
+
+include: "/views/base/adsetinsightsdailyagg.view"
+# The name of this view in Looker is "Campaign Insights"
 view: +adsetinsightsdailyagg {
 
+  ######### PRIMARY KEY #########
   dimension: adsetinsightsdailyagg_pk {
     type: string
     primary_key: yes
     hidden: yes
-    sql: CONCAT(${TABLE}.campaign_id, ${TABLE}.account_id, ${TABLE}.report_date) ;;
+    sql: CONCAT(${adset_id}, ${date}) ;;
   }
-  measure: sum_of_total_impressions {
+
+
+  # Click on the type parameter to see all the options in the Quick Help panel on the right.
+  # A measure with sum only.
+
+  measure: sum_of_impressions_adset {
     type: sum
     value_format_name: "positive_m_or_k"
     description: "The number of times your ads were on screen."
-    sql: ${total_impressions_adset} ;;
+    sql: ${impressions} ;;
   }
-  measure: average_of_cpm{
-    type: average
+  measure: sum_of_spend_adset {
+    type: sum
+    value_format_name: "positive_m_or_k"
+    description: "The estimated total amount of money you've spent on your campaign, ad set or ad during its schedule. This metric is estimated."
+    sql: ${spend} ;;
+  }
+  measure: sum_of_link_clicks_adset {
+    type: sum
+    value_format_name: "positive_m_or_k"
+    description: "The number of clicks on links within the ad that led to advertiser-specified destinations, on or off Meta technologies."
+    sql: ${link_clicks} ;;
+  }
+
+  #A measures with calculations
+  measure: cpm_adset{
+    type: number
     value_format_name: usd
     description: "The average cost for 1,000 impressions."
-    sql: ${cpm} ;;
+    sql: SAFE_DIVIDE(${sum_of_spend_adset}, ${sum_of_impressions_adset} / 1000) ;;
   }
-  measure: average_of_link_ctr{
-    type: average
-    value_format:"0.00\%"
-    description: "The number of clicks that your ad receives divided by the number of times your ad is shown"
-    sql: ${link_ctr} ;;
-  }
-  measure: sum_of_post_engagement {
-    type: sum
-    value_format_name: "positive_m_or_k"
-    description: "Post engagements are the total number of actions that people take involving your ads"
-    sql: ${post_engagement_adset} ;;
-  }
-  measure: average_of_engagement_rate{
-    type: average
-    value_format:"0.00\%"
-    description: "The total engagement divided by total reach."
-    sql: ${engagement_rate} ;;
-  }
-  measure: average_of_cpe{
-    type: average
-    value_format:"0.00\%"
-    description: "Compares the cost to the total amount of engagements on a Facebook post that include: likes and reactions. comments. shares."
-    sql: ${cpe} ;;
-  }
-  measure: sum_of_total_video_view {
-    type: sum
-    value_format_name: "positive_m_or_k"
-    description: "The number of times your video plays for at least 3 seconds"
-    sql: ${total_video_view} ;;
-  }
-  measure: average_of_vtr{
-    type: average
-    value_format:"0.00\%"
-    description: "The video p95 watched actions divided by impressions."
-    sql: ${vtr} ;;
-  }
-  measure: average_of_cpcv{
-    type: average
-    value_format_name: usd
-    description: "Pay for a video ad once the user watches a video in its entirety"
-    sql: ${cpcv} ;;
+  measure: link_ctr_adset{
+    type: number
+    description: "The number of clicks that your ad receives divided by the number of times your ad is shown."
+    sql: SAFE_DIVIDE(${sum_of_link_clicks_adset}, ${sum_of_impressions_adset}) ;;
+    value_format_name: percent_2
   }
 }
