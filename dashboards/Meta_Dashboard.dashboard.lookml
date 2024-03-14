@@ -1,9 +1,9 @@
+---
 - dashboard: meta_campaign_performance_overview
   title: Meta Campaign Performance Overview
   layout: newspaper
   preferred_viewer: dashboards-next
   description: ''
-  refresh: 1 minute
   preferred_slug: Asqs7xuGqbq1Tg3eP2ABrV
   elements:
   - name: <p style="color:grey;">-------------------------------------------------------------------------------------------------------------</p>
@@ -223,8 +223,8 @@
     col: 7
     width: 10
     height: 2
-  - title: Total Impressions
-    name: Total Impressions
+  - title: Untitled
+    name: Untitled
     model: cortex-meta
     explore: campaigninsightsdailyagg
     type: single_value
@@ -252,8 +252,9 @@
     col: 0
     width: 5
     height: 2
-  - title: Total Video Views
-    name: Total Video Views
+  - title: Untitled
+    name: Untitled (2)
+    model: cortex-meta
     explore: campaigninsightsdailyagg
     type: single_value
     fields: [campaigninsightsdailyagg.sum_of_video_views]
@@ -281,8 +282,9 @@
     col: 5
     width: 5
     height: 2
-  - title: Total Cost
-    name: Total Cost
+  - title: Untitled
+    name: Untitled (3)
+    model: cortex-meta
     explore: campaigninsightsdailyagg
     type: single_value
     fields: [campaigninsightsdailyagg.sum_of_spend]
@@ -308,8 +310,9 @@
     col: 10
     width: 5
     height: 2
-  - title: Post Engagement
-    name: Post Engagement
+  - title: Untitled
+    name: Untitled (4)
+    model: cortex-meta
     explore: campaigninsightsdailyagg
     type: single_value
     fields: [campaigninsightsdailyagg.sum_of_post_engagements]
@@ -337,8 +340,9 @@
     col: 0
     width: 5
     height: 2
-  - title: Total Clicks
-    name: Total Clicks
+  - title: Untitled
+    name: Untitled (5)
+    model: cortex-meta
     explore: campaigninsightsdailyagg
     type: single_value
     fields: [campaigninsightsdailyagg.sum_of_link_clicks]
@@ -365,8 +369,9 @@
     col: 10
     width: 5
     height: 2
-  - title: Engagement Rate
-    name: Engagement Rate
+  - title: Untitled
+    name: Untitled (6)
+    model: cortex-meta
     explore: campaigninsightsdailyagg
     type: single_value
     fields: [campaigninsightsdailyagg.engagement_rate]
@@ -392,8 +397,9 @@
     col: 5
     width: 5
     height: 2
-  - title: VTR
-    name: VTR
+  - title: Untitled
+    name: Untitled (7)
+    model: cortex-meta
     explore: campaigninsightsdailyagg
     type: single_value
     fields: [campaigninsightsdailyagg.vtr]
@@ -424,6 +430,7 @@
     height: 2
   - title: Campaign Timeline
     name: Campaign Timeline
+    model: cortex-meta
     explore: campaigninsightsdailyagg
     type: looker_timeline
     fields: [campaigninsightsdailyagg.campaign_name, campaigninsightsdailyagg.campaign_start_date,
@@ -443,7 +450,7 @@
     defaults_version: 1
     note_state: collapsed
     note_display: above
-    note_text: 'Active Campaigns based on date range showing Campaign Start and End dates.
+    note_text: 'Active Campaigns based on date range including start and end dates.
 
       '
     listen:
@@ -455,6 +462,7 @@
     height: 10
   - title: Monthly Campaign Spend
     name: Monthly Campaign Spend
+    model: cortex-meta
     explore: campaigninsightsdailyagg
     type: looker_line
     fields: [campaigninsightsdailyagg.date_month, campaigninsightsdailyagg.sum_of_spend]
@@ -523,6 +531,7 @@
     height: 10
   - title: Impressions by Campaign
     name: Impressions by Campaign
+    model: cortex-meta
     explore: campaigninsightsdailyagg
     type: looker_column
     fields: [campaigninsightsdailyagg.campaign_name, campaigninsightsdailyagg.sum_of_impressions,
@@ -609,6 +618,7 @@
     height: 11
   - title: Video Views by Campaign
     name: Video Views by Campaign
+    model: cortex-meta
     explore: campaigninsightsdailyagg
     type: looker_column
     fields: [campaigninsightsdailyagg.campaign_name, campaigninsightsdailyagg.sum_of_video_views,
@@ -710,6 +720,7 @@
     height: 12
   - title: Untitled
     name: Untitled (8)
+    model: cortex-meta
     explore: campaigninsightsdailyagg
     type: single_value
     fields: [campaigninsightsdailyagg.cpm]
@@ -826,13 +837,14 @@
     height: 11
   - title: Impressions by Ad Set Audience Targeting
     name: Impressions by Ad Set Audience Targeting
+    model: cortex-meta
     explore: adsetinsightsdailyagg
     type: looker_column
-    fields: [adsetinsightsdailyagg__targeting_audiences_sdt.adset_audience, adsetinsightsdailyagg.sum_of_impressions_adset,
-      adsetinsightsdailyagg.cpm_adset, adsetinsightsdailyagg.link_ctr_adset]
+    fields: [adsetinsightsdailyagg.sum_of_impressions_adset, adsetinsightsdailyagg.cpm_adset,
+      adsetinsightsdailyagg.link_ctr_adset, adsetinsightsdailyagg__targeting_audiences.adset_audience]
     filters:
       adsetinsightsdailyagg.sum_of_impressions_adset: ">0"
-    sorts: [adsetinsightsdailyagg__targeting_audiences_sdt.adset_audience]
+    sorts: [adsetinsightsdailyagg__targeting_audiences.adset_audience]
     limit: 500
     column_limit: 50
     x_axis_gridlines: false
@@ -914,6 +926,7 @@
     height: 13
   - title: Untitled
     name: Untitled (9)
+    model: cortex-meta
     explore: campaigninsightsdailyagg
     type: single_value
     fields: [campaigninsightsdailyagg.frequency]
@@ -946,12 +959,13 @@
     model: cortex-meta
     explore: adsetinsightsdailyagg
     type: looker_column
-    fields: [adsetinsightsdailyagg__placement_details.platform_proper, adsetinsightsdailyagg__targeting_audiences_sdt.adset_audience,
-      adsetinsightsdailyagg__placement_details.vtr_adset, adsetinsightsdailyagg__placement_details.cpcv_adset,
-      adsetinsightsdailyagg__placement_details.sum_of_video_views_adset]
+    fields: [adsetinsightsdailyagg__placement_details.platform_proper, adsetinsightsdailyagg__placement_details.vtr_adset,
+      adsetinsightsdailyagg__placement_details.cpcv_adset, adsetinsightsdailyagg__placement_details.sum_of_video_views_adset,
+      adsetinsightsdailyagg__targeting_audiences.adset_audience]
     filters:
       adsetinsightsdailyagg__placement_details.sum_of_video_views_adset: ">0"
-    sorts: [adsetinsightsdailyagg__placement_details.platform_proper, adsetinsightsdailyagg__targeting_audiences_sdt.adset_audience]
+    sorts: [adsetinsightsdailyagg__placement_details.platform_proper, adsetinsightsdailyagg__targeting_audiences_sdt.adset_audience,
+      adsetinsightsdailyagg__targeting_audiences.adset_audience]
     limit: 500
     column_limit: 50
     dynamic_fields:
@@ -1006,7 +1020,7 @@
       table_calculation: platform_sub_2
       _type_hint: string
     - category: table_calculation
-      expression: concat(${platform_sub_1}," ",${platform_sub_2}, " - ",${adsetinsightsdailyagg__targeting_audiences_sdt.adset_audience})
+      expression: concat(${platform_sub_1}," ",${platform_sub_2}, " - ",${adsetinsightsdailyagg__targeting_audiences.adset_audience})
       label: Platform Adset Audience
       value_format:
       value_format_name:
@@ -1110,6 +1124,7 @@
     height: 12
   - title: Untitled
     name: Untitled (10)
+    model: cortex-meta
     explore: campaigninsightsdailyagg
     type: single_value
     fields: [campaigninsightsdailyagg.sum_of_reach]
@@ -1294,6 +1309,7 @@
     height: 11
   - title: Campaign Impressions by Platform & Placement
     name: Campaign Impressions by Platform & Placement
+    model: cortex-meta
     explore: campaigninsightsdailyagg
     type: looker_column
     fields: [campaigninsightsdailyagg__placement_details.sum_of_impressions_placement,
@@ -1426,6 +1442,7 @@
     height: 11
   - title: Campaign Video Views by Platform & Placement
     name: Campaign Video Views by Platform & Placement
+    model: cortex-meta
     explore: campaigninsightsdailyagg
     type: looker_column
     fields: [campaigninsightsdailyagg__placement_details.platformplacementgroup, campaigninsightsdailyagg__placement_details.platform,
@@ -1568,15 +1585,16 @@
     height: 11
   - title: Ad Set Audience Engagement by Platform
     name: Ad Set Audience Engagement by Platform
+    model: cortex-meta
     explore: adsetinsightsdailyagg
     type: looker_column
-    fields: [adsetinsightsdailyagg__targeting_audiences_sdt.adset_audience, adsetinsightsdailyagg__platform_details.engagement_rate_adset,
-      adsetinsightsdailyagg__platform_details.cpe_adset, adsetinsightsdailyagg__platform_details.sum_of_post_engagements_adset,
-      adsetinsightsdailyagg__platform_details.platform_proper]
+    fields: [adsetinsightsdailyagg__platform_details.engagement_rate_adset, adsetinsightsdailyagg__platform_details.cpe_adset,
+      adsetinsightsdailyagg__platform_details.sum_of_post_engagements_adset, adsetinsightsdailyagg__platform_details.platform_proper,
+      adsetinsightsdailyagg__targeting_audiences.adset_audience]
     filters:
       adsetinsightsdailyagg__platform_details.sum_of_post_engagements_adset: ">0"
       adsetinsightsdailyagg.date: ''
-    sorts: [adsetinsightsdailyagg__platform_details.platform_proper]
+    sorts: [adsetinsightsdailyagg__platform_details.platform_proper, adsetinsightsdailyagg__targeting_audiences.adset_audience]
     limit: 500
     column_limit: 50
     dynamic_fields:
@@ -1631,7 +1649,7 @@
       table_calculation: platform_subs_2
       _type_hint: string
     - category: table_calculation
-      expression: concat(${platform_subs_1}," ",${platform_subs_2}, " - ",${adsetinsightsdailyagg__targeting_audiences_sdt.adset_audience})
+      expression: concat(${platform_subs_1}," ",${platform_subs_2}, " - ",${adsetinsightsdailyagg__targeting_audiences.adset_audience})
       label: Platform Adset Audience
       value_format:
       value_format_name:
@@ -1727,6 +1745,7 @@
       type: advanced
       display: popover
       options: []
+    model: cortex-meta
     explore: campaigninsightsdailyagg
     listens_to_filters: []
     field: campaigninsightsdailyagg.date_date
@@ -1739,6 +1758,7 @@
     ui_config:
       type: tag_list
       display: popover
+    model: cortex-meta
     explore: campaign
     listens_to_filters: [Date]
     field: campaign.name

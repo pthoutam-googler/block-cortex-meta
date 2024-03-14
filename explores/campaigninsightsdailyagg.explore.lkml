@@ -27,10 +27,10 @@ explore: campaigninsightsdailyagg {
 
 explore: adsetinsightsdailyagg {
   label: "Adset Insights"
-  join: adsetinsightsdailyagg__targeting_audiences_sdt {
+  join: adsetinsightsdailyagg__targeting_audiences {
     view_label: "Adset Insights Daily Agg: Targeting Audiences"
     type: left_outer
-    sql_on: ${adsetinsightsdailyagg__targeting_audiences_sdt.adset_id} = ${adsetinsightsdailyagg.adset_id} ;;
+    sql_on: ${adsetinsightsdailyagg__targeting_audiences.adset_id} = ${adsetinsightsdailyagg.adset_id} ;;
     relationship: one_to_many
   }
   join: adsetinsightsdailyagg__placement_details {

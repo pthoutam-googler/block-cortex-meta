@@ -1,14 +1,19 @@
-view: adsetinsightsdailyagg__targeting_audiences_sdt {
+#########################################################################################################
+# Purpose: Contains additional measures and calculations from CampaignInsightsDailyAgg table.
+
+#########################################################################################################
+
+include: "/views/base/adsetinsightsdailyagg__targeting_audiences.view"
+# The name of this view in Looker is "Adset Insights"
+view: +adsetinsightsdailyagg__targeting_audiences {
   derived_table: {
     sql: SELECT DISTINCT
              adset_id,
-             adset_name,
              STRING_AGG(DISTINCT targeting_audiences.name, ' + ') AS adset_audience
          FROM `kittycorn-dev-epam.looker_reporting_meta.AdsetInsightsDailyAgg`
          LEFT JOIN UNNEST(targeting_audiences) AS targeting_audiences
          GROUP BY
-             adset_id,
-             adset_name
+             adset_id
          ;;
 
   }
@@ -25,11 +30,6 @@ view: adsetinsightsdailyagg__targeting_audiences_sdt {
     description: "The unique ID of the ad set you're viewing in reporting."
     hidden: yes
     sql: ${TABLE}.adset_id ;;
-  }
-  dimension: adset_name {
-    type: string
-    description: "The name of the ad set you're viewing in reporting."
-    sql: ${TABLE}.adset_name ;;
   }
   dimension: adset_audience {
     type: string
