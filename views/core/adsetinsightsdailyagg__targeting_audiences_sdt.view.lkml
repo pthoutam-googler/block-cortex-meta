@@ -10,7 +10,7 @@ view: +adsetinsightsdailyagg__targeting_audiences {
     sql: SELECT DISTINCT
              adset_id,
              STRING_AGG(DISTINCT targeting_audiences.name, ' + ') AS adset_audience
-         FROM `kittycorn-dev-epam.looker_reporting_meta.AdsetInsightsDailyAgg`
+         FROM `@{GCP_PROJECT_ID}.@{REPORTING_DATASET}.AdsetInsightsDailyAgg`
          LEFT JOIN UNNEST(targeting_audiences) AS targeting_audiences
          GROUP BY
              adset_id
