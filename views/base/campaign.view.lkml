@@ -1,5 +1,5 @@
 view: campaign {
-  sql_table_name: `kittycorn-dev-epam.looker_reporting_meta.Campaign` ;;
+  sql_table_name: `@{GCP_PROJECT_ID}.@{REPORTING_DATASET}.Campaign` ;;
 
   dimension: name {
     type: string
