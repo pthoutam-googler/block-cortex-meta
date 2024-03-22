@@ -99,9 +99,9 @@
     col: 19
     width: 5
     height: 2
-  - name: "<h3><strong>Audience Targeting Performance"
+  - name: "<h3><strong>How did my target audience engage with my campaigns?"
     type: text
-    title_text: "<h3><strong>Audience Targeting Performance"
+    title_text: "<h3><strong>How did my target audience engage with my campaigns?"
     subtitle_text: ''
     body_text: ''
     row: 92
@@ -214,9 +214,9 @@
     col: 17
     width: 7
     height: 2
-  - name: "<h3><strong>Campaign Engagement"
+  - name: "<h3><strong>What was the engagement performance for my campaigns?"
     type: text
-    title_text: "<h3><strong>Campaign Engagement"
+    title_text: "<h3><strong>What was the engagement performance for my campaigns?"
     subtitle_text: ''
     body_text: ''
     row: 79
@@ -248,8 +248,8 @@
     listen:
       Date: campaigninsightsdailyagg.date_date
       Campaign Name: campaigninsightsdailyagg.campaign_name
-    row: 2
-    col: 0
+    row: 4
+    col: 5
     width: 5
     height: 2
   - title: Untitled
@@ -278,8 +278,8 @@
     listen:
       Date: campaigninsightsdailyagg.date_date
       Campaign Name: campaigninsightsdailyagg.campaign_name
-    row: 2
-    col: 5
+    row: 4
+    col: 10
     width: 5
     height: 2
   - title: Untitled
@@ -307,7 +307,7 @@
       Date: campaigninsightsdailyagg.date_date
       Campaign Name: campaigninsightsdailyagg.campaign_name
     row: 2
-    col: 10
+    col: 0
     width: 5
     height: 2
   - title: Untitled
@@ -336,8 +336,8 @@
     listen:
       Date: campaigninsightsdailyagg.date_date
       Campaign Name: campaigninsightsdailyagg.campaign_name
-    row: 4
-    col: 0
+    row: 2
+    col: 19
     width: 5
     height: 2
   - title: Untitled
@@ -365,8 +365,8 @@
     listen:
       Date: campaigninsightsdailyagg.date_date
       Campaign Name: campaigninsightsdailyagg.campaign_name
-    row: 4
-    col: 10
+    row: 2
+    col: 5
     width: 5
     height: 2
   - title: Untitled
@@ -394,8 +394,8 @@
       Date: campaigninsightsdailyagg.date_date
       Campaign Name: campaigninsightsdailyagg.campaign_name
     row: 4
-    col: 5
-    width: 5
+    col: 15
+    width: 4
     height: 2
   - title: Untitled
     name: Untitled (7)
@@ -424,8 +424,8 @@
     listen:
       Date: campaigninsightsdailyagg.date_date
       Campaign Name: campaigninsightsdailyagg.campaign_name
-    row: 4
-    col: 15
+    row: 2
+    col: 10
     width: 5
     height: 2
   - title: Campaign Timeline
@@ -743,8 +743,8 @@
     listen:
       Date: campaigninsightsdailyagg.date_date
       Campaign Name: campaigninsightsdailyagg.campaign_name
-    row: 2
-    col: 15
+    row: 4
+    col: 0
     width: 5
     height: 2
   - title: Engagement by Campaign
@@ -950,9 +950,9 @@
     listen:
       Date: campaigninsightsdailyagg.date_date
       Campaign Name: campaigninsightsdailyagg.campaign_name
-    row: 2
-    col: 20
-    width: 4
+    row: 4
+    col: 19
+    width: 5
     height: 2
   - title: Completed Videos by Ad Set Audience targeting and Platform
     name: Completed Videos by Ad Set Audience targeting and Platform
@@ -1147,12 +1147,12 @@
     listen:
       Date: campaigninsightsdailyagg.date_date
       Campaign Name: campaigninsightsdailyagg.campaign_name
-    row: 4
-    col: 20
+    row: 2
+    col: 15
     width: 4
     height: 2
-  - title: Reactions by Campaign
-    name: Reactions by Campaign
+  - title: Actions by Campaign
+    name: Actions by Campaign
     model: cortex-meta
     explore: campaigninsightsdailyagg
     type: looker_column
