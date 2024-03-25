@@ -14,8 +14,8 @@
     subtitle_text: ''
     body_text: ''
     row: 0
-    col: 19
-    width: 5
+    col: 18
+    width: 6
     height: 2
   - name: <p style="color:grey;">-------------------------------------------------------------------------------------------------------------</p>
       </body> (2)
@@ -26,7 +26,7 @@
     body_text: ''
     row: 0
     col: 0
-    width: 5
+    width: 6
     height: 2
   - name: "<h2><strong>Overall Campaign Performance"
     type: text
@@ -34,8 +34,8 @@
     subtitle_text: " What is the overall campaign performance?"
     body_text: ''
     row: 0
-    col: 5
-    width: 14
+    col: 6
+    width: 12
     height: 2
   - name: "<h3><strong>What campaigns have run?"
     type: text
@@ -43,8 +43,8 @@
     subtitle_text: ''
     body_text: ''
     row: 6
-    col: 5
-    width: 14
+    col: 6
+    width: 12
     height: 2
   - name: '<p style="color:grey;">-------------------------------------------------------------------------------------------------------------</p>
       </body> '
@@ -55,7 +55,7 @@
     body_text: ''
     row: 6
     col: 0
-    width: 5
+    width: 6
     height: 2
   - name: <p style="color:grey;">-------------------------------------------------------------------------------------------------------------</p>
       </body>  (2)
@@ -65,8 +65,8 @@
     subtitle_text: ''
     body_text: ''
     row: 6
-    col: 19
-    width: 5
+    col: 18
+    width: 6
     height: 2
   - name: "<h3><strong>What is the cumulative campaign spend?"
     type: text
@@ -74,8 +74,8 @@
     subtitle_text: ''
     body_text: ''
     row: 18
-    col: 5
-    width: 14
+    col: 6
+    width: 12
     height: 2
   - name: <p style="color:grey;">-------------------------------------------------------------------------------------------------------------</p>
       </body>  (3)
@@ -86,7 +86,7 @@
     body_text: ''
     row: 18
     col: 0
-    width: 5
+    width: 6
     height: 2
   - name: <p style="color:grey;">-------------------------------------------------------------------------------------------------------------</p>
       </body>  (4)
@@ -96,8 +96,8 @@
     subtitle_text: ''
     body_text: ''
     row: 18
-    col: 19
-    width: 5
+    col: 18
+    width: 6
     height: 2
   - name: "<h3><strong>How did my target audience engage with my campaigns?"
     type: text
@@ -105,8 +105,8 @@
     subtitle_text: ''
     body_text: ''
     row: 92
-    col: 7
-    width: 10
+    col: 6
+    width: 12
     height: 2
   - name: <p style="color:grey;">-------------------------------------------------------------------------------------------------------------</p>
       </body>  (5)
@@ -117,7 +117,7 @@
     body_text: ''
     row: 30
     col: 0
-    width: 7
+    width: 6
     height: 2
   - name: "<h3><strong>How many impressions did I buy?"
     type: text
@@ -125,8 +125,8 @@
     subtitle_text: ''
     body_text: ''
     row: 30
-    col: 7
-    width: 10
+    col: 6
+    width: 12
     height: 2
   - name: <p style="color:grey;">-------------------------------------------------------------------------------------------------------------</p>
       </body>  (6)
@@ -136,8 +136,8 @@
     subtitle_text: ''
     body_text: ''
     row: 30
-    col: 17
-    width: 7
+    col: 18
+    width: 6
     height: 2
   - name: <p style="color:grey;">-------------------------------------------------------------------------------------------------------------</p>
       </body>  (7)
@@ -148,7 +148,7 @@
     body_text: ''
     row: 92
     col: 0
-    width: 7
+    width: 6
     height: 2
   - name: <p style="color:grey;">-------------------------------------------------------------------------------------------------------------</p>
       </body>  (8)
@@ -159,7 +159,7 @@
     body_text: ''
     row: 54
     col: 0
-    width: 7
+    width: 6
     height: 2
   - name: <p style="color:grey;">-------------------------------------------------------------------------------------------------------------</p>
       </body>  (9)
@@ -169,8 +169,8 @@
     subtitle_text: ''
     body_text: ''
     row: 54
-    col: 17
-    width: 7
+    col: 18
+    width: 6
     height: 2
   - name: "<h3><strong>How did my Video Ads perform?"
     type: text
@@ -178,8 +178,8 @@
     subtitle_text: ''
     body_text: ''
     row: 54
-    col: 7
-    width: 10
+    col: 6
+    width: 12
     height: 2
   - name: <p style="color:grey;">-------------------------------------------------------------------------------------------------------------</p>
       </body>  (10)
@@ -189,8 +189,8 @@
     subtitle_text: ''
     body_text: ''
     row: 92
-    col: 17
-    width: 7
+    col: 18
+    width: 6
     height: 2
   - name: <p style="color:grey;">-------------------------------------------------------------------------------------------------------------</p>
       </body>  (11)
@@ -201,7 +201,7 @@
     body_text: ''
     row: 79
     col: 0
-    width: 7
+    width: 6
     height: 2
   - name: <p style="color:grey;">-------------------------------------------------------------------------------------------------------------</p>
       </body>  (12)
@@ -211,8 +211,8 @@
     subtitle_text: ''
     body_text: ''
     row: 79
-    col: 17
-    width: 7
+    col: 18
+    width: 6
     height: 2
   - name: "<h3><strong>What was the engagement performance for my campaigns?"
     type: text
@@ -220,8 +220,8 @@
     subtitle_text: ''
     body_text: ''
     row: 79
-    col: 7
-    width: 10
+    col: 6
+    width: 12
     height: 2
   - title: Untitled
     name: Untitled
