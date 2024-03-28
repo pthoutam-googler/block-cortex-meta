@@ -1,16 +1,16 @@
-# Please change the connection values before deploying to production
+
 
 constant: CONNECTION_NAME {
-  value: "dev-sfmc"
+  value: "connection"
   export: override_required
 }
 
 constant: GCP_PROJECT_ID {
-  value: "kittycorn-dev-epam"
+  value: "GCP Project ID"
   export: override_required
 }
 
 constant: REPORTING_DATASET {
-  value: "looker_reporting_meta"
+  value: "Reporting Dataset Name"
   export: override_required
 }
