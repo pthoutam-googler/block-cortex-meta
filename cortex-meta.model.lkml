@@ -1,14 +1,14 @@
 connection: "@{CONNECTION_NAME}"
 
 # include explores and other objects
-include: "/views/**/*.view.lkml"
 include: "/explores/**/*.explore"
 include: "/dashboards/*.dashboard.lookml"
 
 datagroup: meta_report_default_datagroup {
-# sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
 }
+
+label: "Cortex META"
 
 persist_with: meta_report_default_datagroup
 

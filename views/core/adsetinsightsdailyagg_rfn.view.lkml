@@ -1,11 +1,13 @@
 #########################################################################################################
 # Purpose: Contains additional measures and calculations from CampaignInsightsDailyAgg table.
-
+#
 #########################################################################################################
 
 include: "/views/base/adsetinsightsdailyagg.view"
-# The name of this view in Looker is "Campaign Insights"
+
 view: +adsetinsightsdailyagg {
+
+  view_label: "Adset Insights Daily Agg"
 
   ######### PRIMARY KEY #########
   dimension: adsetinsightsdailyagg_pk {
@@ -14,10 +16,6 @@ view: +adsetinsightsdailyagg {
     hidden: yes
     sql: CONCAT(${adset_id}, ${date}) ;;
   }
-
-
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
-  # A measure with sum only.
 
   measure: sum_of_impressions_adset {
     type: sum
@@ -38,15 +36,16 @@ view: +adsetinsightsdailyagg {
     sql: ${link_clicks} ;;
   }
 
-  #A measures with calculations
   measure: cpm_adset{
     type: number
+    label: "CPM Adset"
     value_format_name: usd
     description: "The average cost for 1,000 impressions."
     sql: SAFE_DIVIDE(${sum_of_spend_adset}, ${sum_of_impressions_adset} / 1000) ;;
   }
   measure: link_ctr_adset{
     type: number
+    label: "Link CTR Adset"
     description: "The number of clicks that your ad receives divided by the number of times your ad is shown."
     sql: SAFE_DIVIDE(${sum_of_link_clicks_adset}, ${sum_of_impressions_adset}) ;;
     value_format_name: percent_2

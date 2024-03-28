@@ -71,7 +71,7 @@ Required Constant Values are configured during the Installation process
 
 - Google Cloud Project: The Google Cloud project where the Meta reporting dataset resides in BigQuery (i.e. Google Cloud  project id). [Identifying Project ID](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects)
 
-- Reporting Dataset: - The deployed Cortex Data Foundation dataset where the META reporting views reside within the Google Cloud BigQuery project. (Depending on the deployment settings for the [Google Cloud Cortex Data Foundation](https://github.com/GoogleCloudPlatform/cortex-data-foundation) (see section Required Data), this dataset name would typically be of the pattern ending with  _REPORTING).
+- Reporting Dataset: - The deployed Cortex Data Foundation dataset where the META reporting views reside within the Google Cloud BigQuery project. Depending on the deployment settings for the [Google Cloud Cortex Data Foundation](https://github.com/GoogleCloudPlatform/cortex-data-foundation) (see section Required Data), this dataset name would typically be of the pattern ending with  _REPORTING.
 
 - **Derived Tables**: - [Derived Tables](https://cloud.google.com/looker/docs/derived-tables#use_cases_for_pdts) required for Adset visualizations in the dashboard.
 

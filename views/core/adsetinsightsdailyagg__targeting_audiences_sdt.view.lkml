@@ -1,6 +1,6 @@
 #########################################################################################################
 # Purpose: Contains additional measures and calculations from CampaignInsightsDailyAgg table.
-
+#
 #########################################################################################################
 
 include: "/views/base/adsetinsightsdailyagg__targeting_audiences.view"
