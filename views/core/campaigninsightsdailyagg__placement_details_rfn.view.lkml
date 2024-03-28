@@ -15,7 +15,7 @@ view: +campaigninsightsdailyagg__placement_details {
     sql: CONCAT(CAST(${campaigninsightsdailyagg.campaign_id} AS STRING), CAST(${campaigninsightsdailyagg.report_date} AS STRING), CAST(${placement} AS STRING)) ;;
   }
 
- measure: sum_of_impressions_placement {
+  measure: sum_of_impressions_placement {
     type: sum
     value_format_name: "positive_m_or_k"
     description: "The number of times your ads were on screen."
@@ -65,6 +65,7 @@ view: +campaigninsightsdailyagg__placement_details {
     sql: SAFE_DIVIDE(${sum_of_link_clicks_placement}, ${sum_of_impressions_placement}) ;;
     value_format_name: percent_2
   }
+
   measure: vtr_placement {
     type: number
     label: "VTR Placement"
@@ -81,27 +82,70 @@ view: +campaigninsightsdailyagg__placement_details {
     sql: SAFE_DIVIDE(${sum_of_spend_placement}, ${sum_of_video_p95_watched_actions_video_views_placement}) ;;
   }
 
- dimension: platformplacementgroup {
-  type: string
-  label: "Platform Placement Group"
-  sql: CASE
-    WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'feed' THEN 'Facebook Feed'
-    WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'facebook_reels' THEN 'Facebook Reels'
-    WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'facebook_stories' THEN 'Facebook Stories'
-    WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'instream_video' THEN 'Ads on Facebook Reels'
-    WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'search' THEN 'Facebook Search Results'
-    WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'marketplace' THEN 'Facebook Marketplace'
-    WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'instream_video' THEN 'Facebook in-stream video'
-    WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'feed' THEN 'Instagram Feed'
-    WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'instagram_explore' THEN 'Instagram Explore'
-    WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'instagram_explore_grid_home' THEN 'Instagram Explore Home'
-    WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'instagram_profile_feed' THEN 'Instagram Profile Feed'
-    WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'instagram_reels' THEN 'Instagram Reels'
-    WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'instagram_stories' THEN 'Instagram Stories'
-    WHEN ${TABLE}.publisher_platform = 'audience_network' AND ${TABLE}.platform_position = 'an_classic' THEN 'Audience Network Classic'
-    WHEN ${TABLE}.publisher_platform = 'audience_network' AND ${TABLE}.platform_position = 'rewarded_video' THEN 'Audience Network Rewarded Video'
-    ELSE NULL
-    END ;;
-  order_by_field:platform
+  dimension: platformplacementgroup {
+    type: string
+    label: "Platform Placement Group"
+    sql: CASE
+      WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'feed' THEN 'Facebook Feed'
+      WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'facebook_reels' THEN 'Facebook Reels'
+      WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'facebook_stories' THEN 'Facebook Stories'
+      WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'instream_video' THEN 'Ads on Facebook Reels'
+      WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'search' THEN 'Facebook Search Results'
+      WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'marketplace' THEN 'Facebook Marketplace'
+      WHEN ${TABLE}.publisher_platform = 'facebook' AND ${TABLE}.platform_position = 'instream_video' THEN 'Facebook in-stream video'
+      WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'feed' THEN 'Instagram Feed'
+      WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'instagram_explore' THEN 'Instagram Explore'
+      WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'instagram_explore_grid_home' THEN 'Instagram Explore Home'
+      WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'instagram_profile_feed' THEN 'Instagram Profile Feed'
+      WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'instagram_reels' THEN 'Instagram Reels'
+      WHEN ${TABLE}.publisher_platform = 'instagram' AND ${TABLE}.platform_position = 'instagram_stories' THEN 'Instagram Stories'
+      WHEN ${TABLE}.publisher_platform = 'audience_network' AND ${TABLE}.platform_position = 'an_classic' THEN 'Audience Network Classic'
+      WHEN ${TABLE}.publisher_platform = 'audience_network' AND ${TABLE}.platform_position = 'rewarded_video' THEN 'Audience Network Rewarded Video'
+      ELSE NULL
+      END ;;
+    order_by_field:platform
   }
+
+  measure: sum_of_video_views_facebook {
+    type: number
+    description: "The number of times your video plays for at least 3 seconds on Facebook platform."
+    sql: SUM(IF(${platform} = "facebook",${video_views},NULL)) ;;
+    value_format_name: "positive_m_or_k"
+  }
+
+  measure: sum_of_video_views_instagram {
+    type: number
+    description: "The number of times your video plays for at least 3 seconds on Instagram platform."
+    sql: SUM(IF(${platform} = "instagram",${video_views},NULL)) ;;
+    value_format_name: "positive_m_or_k"
+  }
+
+  measure: sum_of_video_views_audience_network {
+    type: number
+    description: "The number of times your video plays for at least 3 seconds on Instagram platform."
+    sql: SUM(IF(${platform} = "audience_network",${video_views},NULL)) ;;
+    value_format_name: "positive_m_or_k"
+  }
+
+  measure: sum_of_impressions_facebook {
+    type: number
+    description: "The number of times your ads were on screen on Facebook platform."
+    sql: SUM(IF(${platform} = "facebook",${impressions},NULL)) ;;
+    value_format_name: "positive_m_or_k"
+  }
+
+  measure: sum_of_impressions_instagram {
+    type: number
+    description: "The number of times your ads were on screen on Instagram platform."
+    sql: SUM(IF(${platform} = "instagram",${impressions},NULL)) ;;
+    value_format_name: "positive_m_or_k"
+  }
+
+  measure: sum_of_impressions_audience_network {
+    type: number
+    description: "The number of times your ads were on screen on Audience Network platform."
+    sql: SUM(IF(${platform} = "audience_network",${impressions},NULL)) ;;
+    value_format_name: "positive_m_or_k"
+  }
+
 }

@@ -55,4 +55,31 @@ view: +adsetinsightsdailyagg__platform_details {
     sql: SAFE_DIVIDE(${sum_of_spend_adset}, ${sum_of_post_engagements_adset}) ;;
     value_format_name: percent_2
   }
+
+  measure: sum_of_post_engagements_facebook {
+    type: number
+    description: "Total number of actions that people take involving your ads on Facebook platform."
+    sql: SUM(IF(${platform_proper}='Facebook',${post_engagements},NULL)) ;;
+    value_format_name: "positive_m_or_k"
+  }
+
+  measure: sum_of_post_engagements_instagram {
+    type: number
+    description: "Total number of actions that people take involving your ads on Instagram platform."
+    sql: SUM(IF(${platform_proper}='Instagram',${post_engagements},NULL)) ;;
+    value_format_name: "positive_m_or_k"
+  }
+
+  measure: sum_of_post_engagements_audience_network {
+    type: number
+    description: "Total number of actions that people take involving your ads on Audience Network platform."
+    sql: SUM(IF(${platform_proper}='Audience_Network',${post_engagements},NULL)) ;;
+    value_format_name: "positive_m_or_k"
+  }
+
+  dimension: platform_adset_audience {
+    type: string
+    sql: CONCAT(REPLACE(${adsetinsightsdailyagg__platform_details.platform_proper},'_',' '),' - ',${adsetinsightsdailyagg__targeting_audiences.adset_audience}) ;;
+  }
+
 }

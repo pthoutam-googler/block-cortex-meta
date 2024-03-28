@@ -361,20 +361,11 @@
     name: Monthly Campaign Spend
     explore: campaigninsightsdailyagg
     type: looker_line
-    fields: [campaigninsightsdailyagg.date_month, campaigninsightsdailyagg.sum_of_spend]
+    fields: [campaigninsightsdailyagg.date_month, campaigninsightsdailyagg.cumulative_sum_of_spend]
     fill_fields: [campaigninsightsdailyagg.date_month]
     sorts: [campaigninsightsdailyagg.date_month]
     limit: 500
     column_limit: 50
-    dynamic_fields:
-    - category: table_calculation
-      expression: running_total(${campaigninsightsdailyagg.sum_of_spend})
-      label: Cumulative Spend
-      value_format:
-      value_format_name: positive_usd_m_or_k
-      _kind_hint: measure
-      table_calculation: cumulative_spend
-      _type_hint: number
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -396,8 +387,8 @@
     y_axis_combined: true
     show_null_points: true
     interpolation: linear
-    y_axes: [{label: Cumulative Campaign Spend, orientation: left, series: [{axisId: cumulative_spend,
-            id: cumulative_spend, name: Cumulative Spend}], showLabels: true, showValues: true,
+    y_axes: [{label: Cumulative Campaign Spend, orientation: left, series: [{axisId: cumulative_sum_of_spend,
+            id: cumulative_sum_of_spend, name: cumulative_sum_of_spend}], showLabels: true, showValues: true,
         maxValue: !!null '', minValue: !!null '', valueFormat: '', unpinAxis: false,
         tickDensity: default, tickDensityCustom: 0, type: linear}]
     x_axis_label: ''
@@ -412,7 +403,6 @@
     show_silhouette: false
     totals_color: "#808080"
     hidden_pivots: {}
-    hidden_fields: [campaigninsightsdailyagg.sum_of_spend]
     listen:
       Date: campaigninsightsdailyagg.date_date
       Campaign Name: campaigninsightsdailyagg.campaign_name
@@ -528,44 +518,14 @@
     name: Campaign Impressions by Platform & Placement
     explore: campaigninsightsdailyagg
     type: looker_column
-    fields: [campaigninsightsdailyagg__placement_details.sum_of_impressions_placement,
+    fields: [campaigninsightsdailyagg__placement_details.sum_of_impressions_facebook,campaigninsightsdailyagg__placement_details.sum_of_impressions_instagram,
+      campaigninsightsdailyagg__placement_details.sum_of_impressions_audience_network,
       campaigninsightsdailyagg__placement_details.cpm_placement, campaigninsightsdailyagg__placement_details.link_ctr_placement,
       campaigninsightsdailyagg__placement_details.platformplacementgroup, campaigninsightsdailyagg__placement_details.platform]
     filters: {}
     sorts: [campaigninsightsdailyagg__placement_details.platformplacementgroup]
     limit: 500
     column_limit: 50
-    dynamic_fields:
-    - category: table_calculation
-      expression: if(${campaigninsightsdailyagg__placement_details.platform} = "facebook",
-        ${campaigninsightsdailyagg__placement_details.sum_of_impressions_placement},
-        null)
-      label: TotalImp Facebook
-      value_format:
-      value_format_name: positive_m_or_k
-      _kind_hint: measure
-      table_calculation: totalimp_facebook
-      _type_hint: number
-    - category: table_calculation
-      expression: if(${campaigninsightsdailyagg__placement_details.platform} = "instagram",
-        ${campaigninsightsdailyagg__placement_details.sum_of_impressions_placement},
-        null)
-      label: TotalImp Instagram
-      value_format:
-      value_format_name: positive_m_or_k
-      _kind_hint: measure
-      table_calculation: totalimp_instagram
-      _type_hint: number
-    - category: table_calculation
-      expression: if(${campaigninsightsdailyagg__placement_details.platform} = "audience_network",
-        ${campaigninsightsdailyagg__placement_details.sum_of_impressions_placement},
-        null)
-      label: TotalImp Audience
-      value_format:
-      value_format_name: positive_m_or_k
-      _kind_hint: measure
-      table_calculation: totalimp_audience
-      _type_hint: number
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -593,18 +553,18 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    y_axes: [{label: '', orientation: left, series: [{axisId: totalimp_facebook, id: totalimp_facebook,
-            name: TotalImp Facebook}, {axisId: totalimp_instagram, id: totalimp_instagram,
-            name: TotalImp Instagram}, {axisId: totalimp_audience, id: totalimp_audience,
-            name: TotalImp Audience}], showLabels: true, showValues: true, unpinAxis: false,
-        tickDensity: default, type: linear}, {label: '', orientation: right, series: [
-          {axisId: campaigninsightsdailyagg__placement_details.cpm_placement, id: campaigninsightsdailyagg__placement_details.cpm_placement,
-            name: Cost Per Mille}], showLabels: true, showValues: true, unpinAxis: false,
-        tickDensity: default, type: linear}, {label: !!null '', orientation: right,
-        series: [{axisId: campaigninsightsdailyagg__placement_details.link_ctr_placement,
-            id: campaigninsightsdailyagg__placement_details.link_ctr_placement, name: Click
-              Through Rate}], showLabels: true, showValues: true, unpinAxis: false,
-        tickDensity: default, type: linear}]
+    y_axes: [{label: '', orientation: left, series: [{axisId: campaigninsightsdailyagg__placement_details.sum_of_impressions_facebook, id: campaigninsightsdailyagg__placement_details.sum_of_impressions_facebook,
+                name: TotalImp Facebook}, {axisId: campaigninsightsdailyagg__placement_details.sum_of_impressions_instagram, id: campaigninsightsdailyagg__placement_details.sum_of_impressions_instagram,
+                name: TotalImp Instagram}, {axisId: campaigninsightsdailyagg__placement_details.sum_of_impressions_audience_network, id: campaigninsightsdailyagg__placement_details.sum_of_impressions_audience_network,
+                name: TotalImp Audience}], showLabels: true, showValues: true, unpinAxis: false,
+            tickDensity: default, type: linear}, {label: '', orientation: right, series: [
+              {axisId: campaigninsightsdailyagg__placement_details.cpm_placement, id: campaigninsightsdailyagg__placement_details.cpm_placement,
+                name: Cost Per Mille}], showLabels: true, showValues: true, unpinAxis: false,
+            tickDensity: default, type: linear}, {label: !!null '', orientation: right,
+            series: [{axisId: campaigninsightsdailyagg__placement_details.link_ctr_placement,
+                id: campaigninsightsdailyagg__placement_details.link_ctr_placement, name: Click
+                  Through Rate}], showLabels: true, showValues: true, unpinAxis: false,
+            tickDensity: default, type: linear}]
     x_axis_label: Platform & Placement Name
     x_axis_zoom: true
     y_axis_zoom: true
@@ -612,20 +572,17 @@
       campaigninsightsdailyagg__placement_details.cpm_placement: line
       campaigninsightsdailyagg__placement_details.link_ctr_placement: line
     series_colors:
-      campaigninsightsdailyagg__placement_details.sum_of_impressions_placement: "#e8e8e8"
       campaigninsightsdailyagg__placement_details.cpm_placement: "#1A73E8"
-      totalimp_facebook: "#deffd7"
-      totalimp_instagram: "#d3edfc"
-      totalimp_audience: "#fff9a3"
+      campaigninsightsdailyagg__placement_details.sum_of_impressions_facebook: "#deffd7"
+      campaigninsightsdailyagg__placement_details.sum_of_impressions_instagram: "#d3edfc"
+      campaigninsightsdailyagg__placement_details.sum_of_impressions_audience_network: "#fff9a3"
       campaigninsightsdailyagg__placement_details.link_ctr_placement: "#E52592"
     series_labels:
-      campaigninsightsdailyagg__placement_details.sum_of_impressions_placement: Total
-        Impressions
       campaigninsightsdailyagg__placement_details.cpm_placement: CPM
       campaigninsightsdailyagg__placement_details.link_ctr_placement: CTR
-      totalimp_facebook: Facebook - Total Impression
-      totalimp_instagram: Instagram - Total Impression
-      totalimp_audience: Audience  Network - Total Impression
+      campaigninsightsdailyagg__placement_details.sum_of_impressions_facebook: Facebook - Total Impression
+      campaigninsightsdailyagg__placement_details.sum_of_impressions_instagram: Instagram - Total Impression
+      campaigninsightsdailyagg__placement_details.sum_of_impressions_audience_network: Audience  Network - Total Impression
     series_point_styles:
       campaigninsightsdailyagg__placement_details.link_ctr_placement: triangle
     x_axis_label_rotation: -60
@@ -633,17 +590,18 @@
     advanced_vis_config: |-
       {
         chart: {},
-        series: [{
-          name: 'Cost Per Mile'
-        }, {
-          name: 'Click Through Rate'
-        }, {
+        series: [ {
           name: 'Facebook - Total Impression'
         }, {
           name: 'Instagram - Total Impression'
         }, {
           name: 'Audience  Network - Total Impression'
-        }]
+        }, {
+          name: 'Cost Per Mille'
+        }, {
+          name: 'Click Through Rate'
+        }
+        ]
       }
     defaults_version: 1
     hidden_fields: [campaigninsightsdailyagg__placement_details.sum_of_impressions_placement,
@@ -693,42 +651,12 @@
     explore: campaigninsightsdailyagg
     type: looker_column
     fields: [campaigninsightsdailyagg__placement_details.platformplacementgroup, campaigninsightsdailyagg__placement_details.platform,
-      campaigninsightsdailyagg__placement_details.sum_of_video_views_placement, campaigninsightsdailyagg__placement_details.cpcv_placement,
+      campaigninsightsdailyagg__placement_details.sum_of_video_views_facebook, campaigninsightsdailyagg__placement_details.sum_of_video_views_instagram,
+      campaigninsightsdailyagg__placement_details.sum_of_video_views_audience_network, campaigninsightsdailyagg__placement_details.cpcv_placement,
       campaigninsightsdailyagg__placement_details.vtr_placement]
     sorts: [campaigninsightsdailyagg__placement_details.platformplacementgroup]
     limit: 500
     column_limit: 50
-    dynamic_fields:
-    - category: table_calculation
-      expression: if(${campaigninsightsdailyagg__placement_details.platform} = "facebook",
-        ${campaigninsightsdailyagg__placement_details.sum_of_video_views_placement},
-        null)
-      label: TotalVideoViews Facebook
-      value_format:
-      value_format_name: positive_m_or_k
-      _kind_hint: measure
-      table_calculation: totalvideoviews_facebook
-      _type_hint: number
-    - category: table_calculation
-      expression: if(${campaigninsightsdailyagg__placement_details.platform} = "instagram",
-        ${campaigninsightsdailyagg__placement_details.sum_of_video_views_placement},
-        null)
-      label: TotalVideoViews Instagram
-      value_format:
-      value_format_name: positive_m_or_k
-      _kind_hint: measure
-      table_calculation: totalvideoviews_instagram
-      _type_hint: number
-    - category: table_calculation
-      expression: if(${campaigninsightsdailyagg__placement_details.platform} = "audience_network",
-        ${campaigninsightsdailyagg__placement_details.sum_of_video_views_placement},
-        null)
-      label: TotalVideoViews Audience
-      value_format:
-      value_format_name: positive_m_or_k
-      _kind_hint: measure
-      table_calculation: totalvideoviews_audience
-      _type_hint: number
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -756,19 +684,19 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    y_axes: [{label: '', orientation: left, series: [{axisId: totalvideoviews_facebook,
-            id: totalvideoviews_facebook, name: Facebook - Total Video Views}, {axisId: totalvideoviews_instagram,
-            id: totalvideoviews_instagram, name: Instagram - Total Video Views}, {
-            axisId: totalvideoviews_audience, id: totalvideoviews_audience, name: Audience
-              Network - Total Video Views}], showLabels: true, showValues: true, unpinAxis: false,
-        tickDensity: default, type: linear}, {label: !!null '', orientation: right,
-        series: [{axisId: campaigninsightsdailyagg__placement_details.vtr_placement,
-            id: campaigninsightsdailyagg__placement_details.vtr_placement, name: VTR}],
-        showLabels: true, showValues: true, unpinAxis: false, tickDensity: default,
-        type: linear}, {label: !!null '', orientation: right, series: [{axisId: campaigninsightsdailyagg__placement_details.cpcv_placement,
-            id: campaigninsightsdailyagg__placement_details.cpcv_placement, name: CPCV}],
-        showLabels: true, showValues: true, unpinAxis: false, tickDensity: default,
-        type: linear}]
+    y_axes: [{label: '', orientation: left, series: [{axisId: campaigninsightsdailyagg__placement_details.sum_of_video_views_facebook,
+                id: campaigninsightsdailyagg__placement_details.sum_of_video_views_facebook, name: Facebook - Total Video Views}, {axisId: campaigninsightsdailyagg__placement_details.sum_of_video_views_instagram,
+                id: campaigninsightsdailyagg__placement_details.sum_of_video_views_instagram, name: Instagram - Total Video Views}, {
+                axisId: campaigninsightsdailyagg__placement_details.sum_of_video_views_audience_network, id: campaigninsightsdailyagg__placement_details.sum_of_video_views_audience_network, name: Audience
+                  Network - Total Video Views}], showLabels: true, showValues: true, unpinAxis: false,
+            tickDensity: default, type: linear}, {label: !!null '', orientation: right,
+            series: [{axisId: campaigninsightsdailyagg__placement_details.vtr_placement,
+                id: campaigninsightsdailyagg__placement_details.vtr_placement, name: VTR}],
+            showLabels: true, showValues: true, unpinAxis: false, tickDensity: default,
+            type: linear}, {label: !!null '', orientation: right, series: [{axisId: campaigninsightsdailyagg__placement_details.cpcv_placement,
+                id: campaigninsightsdailyagg__placement_details.cpcv_placement, name: CPCV}],
+            showLabels: true, showValues: true, unpinAxis: false, tickDensity: default,
+            type: linear}]
     x_axis_label: Platform & Placement Name
     x_axis_zoom: true
     y_axis_zoom: true
@@ -776,38 +704,40 @@
       campaigninsightsdailyagg__placement_details.cpcv_placement: line
       campaigninsightsdailyagg__placement_details.vtr_placement: line
     series_colors:
-      totalvideoviews_facebook: "#deffd7"
-      totalvideoviews_instagram: "#d3edfc"
-      totalvideoviews_audience: "#fff9a3"
+      campaigninsightsdailyagg__placement_details.sum_of_video_views_facebook: "#deffd7"
+      campaigninsightsdailyagg__placement_details.sum_of_video_views_instagram: "#d3edfc"
+      campaigninsightsdailyagg__placement_details.sum_of_video_views_audience_network: "#fff9a3"
       campaigninsightsdailyagg__placement_details.vtr_placement: "#079c98"
       campaigninsightsdailyagg__placement_details.cpcv_placement: "#E8710A"
     series_labels:
-      totalvideoviews_facebook: Facebook - Total Video Views
-      totalvideoviews_instagram: Instagram - Total Video Views
-      totalvideoviews_audience: Audience Network - Total Video Views
+      campaigninsightsdailyagg__placement_details.sum_of_video_views_facebook: Facebook - Total Video Views
+      campaigninsightsdailyagg__placement_details.sum_of_video_views_instagram: Instagram - Total Video Views
+      campaigninsightsdailyagg__placement_details.sum_of_video_views_audience_network: Audience Network - Total Video Views
       campaigninsightsdailyagg__placement_details.cpcv_placement: CPCV
       campaigninsightsdailyagg__placement_details.vtr_placement: VTR
     series_point_styles:
       campaigninsightsdailyagg__placement_details.vtr_placement: triangle
-    x_axis_label_rotation: -60
-    show_dropoff: false
     advanced_vis_config: |-
       {
         chart: {},
-        series: [{
-          name: 'Cost Per Completed View'
-        }, {
-          name: 'View Through Rate'
-        }, {
+        series: [ {
           name: 'Facebook - Total Video Views'
-        }, {
+          }, {
           name: 'Instagram - Total Video Views'
-        }, {
-          name: 'Audience Network - Total Video Views'
-        }]
+          }, {
+          name: 'Audience  Network - Video Views'
+          }, {
+          name: 'Cost Per Completed View'
+          }, {
+          name: 'View Through Rate'
+          }
+        ]
       }
+    x_axis_label_rotation: -60
+    show_dropoff: false
     defaults_version: 1
-    hidden_fields: [campaigninsightsdailyagg__placement_details.platform, campaigninsightsdailyagg__placement_details.sum_of_video_views_placement]
+    hidden_pivots: {}
+    hidden_fields: [campaigninsightsdailyagg__placement_details.platform]
     listen:
       Date: campaigninsightsdailyagg.date_date
       Campaign Name: campaigninsightsdailyagg.campaign_name
@@ -937,72 +867,14 @@
     explore: campaigninsightsdailyagg
     type: looker_column
     fields: [campaigninsightsdailyagg.campaign_name, campaigninsightsdailyagg.sum_of_page_likes,
-      page_likes, campaigninsightsdailyagg.sum_of_post_comments, post_comments, campaigninsightsdailyagg.sum_of_post_reactions,
-      post_reactions, campaigninsightsdailyagg.sum_of_post_saves, post_saves, campaigninsightsdailyagg.sum_of_post_shares,
-      post_shares]
-    filters: {}
+      campaigninsightsdailyagg.sum_of_post_comments, campaigninsightsdailyagg.sum_of_post_reactions,
+      campaigninsightsdailyagg.sum_of_post_saves, campaigninsightsdailyagg.sum_of_post_shares]
+    filters: {
+      campaigninsightsdailyagg.sum_of_page_likes: ">0"
+    }
     sorts: [campaigninsightsdailyagg.campaign_name]
     limit: 500
     column_limit: 50
-    dynamic_fields:
-    - category: measure
-      expression:
-      label: Page Likes
-      value_format: 0.00, "K"
-      value_format_name: __custom
-      based_on: campaigninsightsdailyagg.page_likes
-      _kind_hint: measure
-      measure: page_likes
-      type: sum
-      _type_hint: number
-    - category: measure
-      expression:
-      label: Post Comments
-      value_format: 0.00, "K"
-      value_format_name: __custom
-      based_on: campaigninsightsdailyagg.post_comments
-      _kind_hint: measure
-      measure: post_comments
-      type: sum
-      _type_hint: number
-    - category: measure
-      expression:
-      label: Post Reactions
-      value_format: 0.00, "K"
-      value_format_name: __custom
-      based_on: campaigninsightsdailyagg.post_reactions
-      _kind_hint: measure
-      measure: post_reactions
-      type: sum
-      _type_hint: number
-    - category: measure
-      expression:
-      label: Post Saves
-      value_format: 0.00, "K"
-      value_format_name: __custom
-      based_on: campaigninsightsdailyagg.post_saves
-      _kind_hint: measure
-      measure: post_saves
-      type: sum
-      _type_hint: number
-    - category: measure
-      expression:
-      label: Post Shares
-      value_format: 0.00, "K"
-      value_format_name: __custom
-      based_on: campaigninsightsdailyagg.post_shares
-      _kind_hint: measure
-      measure: post_shares
-      type: sum
-      _type_hint: number
-    - category: table_calculation
-      expression: "(${page_likes}) >1\n"
-      label: Null Yes No
-      value_format:
-      value_format_name:
-      _kind_hint: measure
-      table_calculation: null_yes_no
-      _type_hint: yesno
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -1063,11 +935,6 @@
       campaigninsightsdailyagg.sum_of_post_shares: Post Shares
     reference_lines: []
     defaults_version: 1
-    hidden_pivots: {}
-    hidden_fields: [campaigninsightsdailyagg.sum_of_page_likes, campaigninsightsdailyagg.sum_of_post_comments,
-      campaigninsightsdailyagg.sum_of_post_reactions, campaigninsightsdailyagg.sum_of_post_saves,
-      campaigninsightsdailyagg.sum_of_post_shares, null_yes_no]
-    hidden_points_if_no: [null_yes_no]
     listen:
       Date: campaigninsightsdailyagg.date_date
       Campaign Name: campaigninsightsdailyagg.campaign_name
@@ -1244,7 +1111,6 @@
     series_point_styles:
       adsetinsightsdailyagg.link_ctr_adset: triangle
     defaults_version: 1
-    # hidden_fields: []
     listen:
       Date: adsetinsightsdailyagg.date
       Campaign Name: adsetinsightsdailyagg.campaign_name
@@ -1257,74 +1123,16 @@
     name: Ad Set Audience Engagement by Platform
     explore: adsetinsightsdailyagg
     type: looker_column
-    fields: [adsetinsightsdailyagg__platform_details.engagement_rate_adset, adsetinsightsdailyagg__platform_details.cpe_adset,
-      adsetinsightsdailyagg__platform_details.sum_of_post_engagements_adset, adsetinsightsdailyagg__platform_details.platform_proper,
-      adsetinsightsdailyagg__targeting_audiences.adset_audience]
+    fields: [adsetinsightsdailyagg__platform_details.platform_proper, adsetinsightsdailyagg__targeting_audiences.adset_audience, adsetinsightsdailyagg__platform_details.platform_adset_audience,
+      adsetinsightsdailyagg__platform_details.engagement_rate_adset, adsetinsightsdailyagg__platform_details.cpe_adset,
+      adsetinsightsdailyagg__platform_details.sum_of_post_engagements_facebook, adsetinsightsdailyagg__platform_details.sum_of_post_engagements_instagram,
+      adsetinsightsdailyagg__platform_details.sum_of_post_engagements_audience_network]
     filters:
       adsetinsightsdailyagg__platform_details.sum_of_post_engagements_adset: ">0"
-      adsetinsightsdailyagg.date: ''
+      # adsetinsightsdailyagg.date: ''
     sorts: [adsetinsightsdailyagg__platform_details.platform_proper, adsetinsightsdailyagg__targeting_audiences.adset_audience]
     limit: 500
     column_limit: 50
-    dynamic_fields:
-    - category: table_calculation
-      expression: if(${adsetinsightsdailyagg__platform_details.platform_proper} =
-        "Facebook", ${adsetinsightsdailyagg__platform_details.sum_of_post_engagements_adset},
-        null)
-      label: PostEng Facebook
-      value_format:
-      value_format_name: positive_m_or_k
-      _kind_hint: measure
-      table_calculation: posteng_facebook
-      _type_hint: number
-    - category: table_calculation
-      expression: if(${adsetinsightsdailyagg__platform_details.platform_proper} =
-        "Instagram", ${adsetinsightsdailyagg__platform_details.sum_of_post_engagements_adset},
-        null)
-      label: PostEng Instagram
-      value_format:
-      value_format_name: positive_m_or_k
-      _kind_hint: measure
-      table_calculation: posteng_instagram
-      _type_hint: number
-    - category: table_calculation
-      expression: if(${adsetinsightsdailyagg__platform_details.platform_proper} =
-        "Audience_Network", ${adsetinsightsdailyagg__platform_details.sum_of_post_engagements_adset},
-        null)
-      label: PostEng AN
-      value_format:
-      value_format_name: positive_m_or_k
-      _kind_hint: measure
-      table_calculation: posteng_an
-      _type_hint: number
-    - category: table_calculation
-      expression: substring(${adsetinsightsdailyagg__platform_details.platform_proper},1,position(${adsetinsightsdailyagg__platform_details.platform_proper},"_")-1)
-      label: Platform subs 1
-      value_format:
-      value_format_name:
-      _kind_hint: dimension
-      table_calculation: platform_subs_1
-      _type_hint: string
-    - category: table_calculation
-      expression: |-
-        substring(
-          ${adsetinsightsdailyagg__platform_details.platform_proper},
-          position(${adsetinsightsdailyagg__platform_details.platform_proper},"_")+1,9999
-        )
-      label: Platform subs 2
-      value_format:
-      value_format_name:
-      _kind_hint: dimension
-      table_calculation: platform_subs_2
-      _type_hint: string
-    - category: table_calculation
-      expression: concat(${platform_subs_1}," ",${platform_subs_2}, " - ",${adsetinsightsdailyagg__targeting_audiences.adset_audience})
-      label: Platform Adset Audience
-      value_format:
-      value_format_name:
-      _kind_hint: dimension
-      table_calculation: platform_adset_audience
-      _type_hint: string
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -1352,10 +1160,10 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    y_axes: [{label: Adset Engagement, orientation: left, series: [{axisId: posteng_facebook,
-            id: posteng_facebook, name: Facebook - Post Engagement}, {axisId: posteng_instagram,
-            id: posteng_instagram, name: Instagram - Post Engagement}, {axisId: posteng_an,
-            id: posteng_an, name: Audience Network - Post Engagement}], showLabels: true,
+    y_axes: [{label: Adset Engagement, orientation: left, series: [{axisId: adsetinsightsdailyagg__platform_details.sum_of_post_engagements_facebook,
+            id: adsetinsightsdailyagg__platform_details.sum_of_post_engagements_facebook, name: Facebook - Post Engagement}, {axisId: adsetinsightsdailyagg__platform_details.sum_of_post_engagements_instagram,
+            id: adsetinsightsdailyagg__platform_details.sum_of_post_engagements_instagram, name: Instagram - Post Engagement}, {axisId: adsetinsightsdailyagg__platform_details.sum_of_post_engagements_audience_network,
+            id: adsetinsightsdailyagg__platform_details.sum_of_post_engagements_audience_network, name: Audience Network - Post Engagement}], showLabels: true,
         showValues: true, unpinAxis: false, tickDensity: default, tickDensityCustom: 5,
         type: linear}, {label: '', orientation: right, series: [{axisId: adsetinsightsdailyagg__platform_details.engagement_rate_adset,
             id: adsetinsightsdailyagg__platform_details.engagement_rate_adset, name: Engagement
@@ -1370,25 +1178,22 @@
       adsetinsightsdailyagg__platform_details.cpe_adset: line
       adsetinsightsdailyagg__platform_details.engagement_rate_adset: line
     series_colors:
-      posteng_facebook: "#deffd7"
-      posteng_instagram: "#d3edfc"
-      posteng_an: "#fff9a3"
+      adsetinsightsdailyagg__platform_details.sum_of_post_engagements_facebook: "#deffd7"
+      adsetinsightsdailyagg__platform_details.sum_of_post_engagements_instagram: "#d3edfc"
+      adsetinsightsdailyagg__platform_details.sum_of_post_engagements_audience_network: "#fff9a3"
       adsetinsightsdailyagg__platform_details.engagement_rate_adset: "#9334E6"
       adsetinsightsdailyagg__platform_details.cpe_adset: "#7CB342"
     series_labels:
-      posteng_facebook: Facebook - Post Engagement
-      posteng_instagram: Instagram - Post Engagement
+      adsetinsightsdailyagg__platform_details.sum_of_post_engagements_facebook: Facebook - Post Engagement
+      adsetinsightsdailyagg__platform_details.sum_of_post_engagements_instagram: Instagram - Post Engagement
       adsetinsightsdailyagg__platform_details.cpe_adset: Cost Per Engagement
       adsetinsightsdailyagg__platform_details.engagement_rate_adset: Engagement Rate
-      posteng_an: Audience Network - Post Engagement
+      adsetinsightsdailyagg__platform_details.sum_of_post_engagements_audience_network: Audience Network - Post Engagement
     series_point_styles:
       adsetinsightsdailyagg__platform_details.engagement_rate_adset: triangle
     column_group_spacing_ratio: 0.2
     defaults_version: 1
-    hidden_fields: [adsetinsightsdailyagg.post_engagement_sum, adsetinsightsdailyagg.sum_of_post_engagement,
-      adsetinsightsdailyagg__platform_details.sum_of_post_engagement_adset, adsetinsightsdailyagg__platform_details.sum_of_post_engagements_adset,
-      adsetinsightsdailyagg__targeting_audiences_sdt.adset_audience, platform_subs_1,
-      platform_subs_2, adsetinsightsdailyagg__platform_details.platform_proper]
+    hidden_fields: [adsetinsightsdailyagg__targeting_audiences_sdt.adset_audience, adsetinsightsdailyagg__platform_details.platform_proper]
     listen:
       Date: adsetinsightsdailyagg.date
       Campaign Name: adsetinsightsdailyagg.campaign_name
@@ -1402,73 +1207,15 @@
     explore: adsetinsightsdailyagg
     type: looker_column
     fields: [adsetinsightsdailyagg__placement_details.platform_proper, adsetinsightsdailyagg__placement_details.vtr_adset,
-      adsetinsightsdailyagg__placement_details.cpcv_adset, adsetinsightsdailyagg__placement_details.sum_of_video_views_adset,
-      adsetinsightsdailyagg__targeting_audiences.adset_audience]
+    adsetinsightsdailyagg__placement_details.cpcv_adset, adsetinsightsdailyagg__targeting_audiences.adset_audience,
+    adsetinsightsdailyagg__placement_details.platform_adset_audience, adsetinsightsdailyagg__placement_details.sum_of_video_views_facebook,
+    adsetinsightsdailyagg__placement_details.sum_of_video_views_instagram, adsetinsightsdailyagg__placement_details.sum_of_video_views_audience_network]
     filters:
       adsetinsightsdailyagg__placement_details.sum_of_video_views_adset: ">0"
     sorts: [adsetinsightsdailyagg__placement_details.platform_proper, adsetinsightsdailyagg__targeting_audiences_sdt.adset_audience,
       adsetinsightsdailyagg__targeting_audiences.adset_audience]
     limit: 500
     column_limit: 50
-    dynamic_fields:
-    - category: table_calculation
-      expression: if(${adsetinsightsdailyagg__placement_details.platform_proper} =
-        "Facebook",${adsetinsightsdailyagg__placement_details.sum_of_video_views_adset},
-        null)
-      label: TotalView Facebook
-      value_format:
-      value_format_name: positive_m_or_k
-      _kind_hint: measure
-      table_calculation: totalview_facebook
-      _type_hint: number
-    - category: table_calculation
-      expression: if(${adsetinsightsdailyagg__placement_details.platform_proper} =
-        "Instagram",${adsetinsightsdailyagg__placement_details.sum_of_video_views_adset},
-        null)
-      label: TotalView Instagram
-      value_format:
-      value_format_name: positive_m_or_k
-      _kind_hint: measure
-      table_calculation: totalview_instagram
-      _type_hint: number
-    - category: table_calculation
-      expression: if(${adsetinsightsdailyagg__placement_details.platform_proper} =
-        "Audience_Network",${adsetinsightsdailyagg__placement_details.sum_of_video_views_adset},
-        null)
-      label: TotalView AN
-      value_format:
-      value_format_name: positive_m_or_k
-      _kind_hint: measure
-      table_calculation: totalview_an
-      _type_hint: number
-    - category: table_calculation
-      expression: substring(${adsetinsightsdailyagg__placement_details.platform_proper},1,position(${adsetinsightsdailyagg__placement_details.platform_proper},"_")-1)
-      label: Platform Sub 1
-      value_format:
-      value_format_name:
-      _kind_hint: dimension
-      table_calculation: platform_sub_1
-      _type_hint: string
-    - category: table_calculation
-      expression: |-
-        substring(
-          ${adsetinsightsdailyagg__placement_details.platform_proper},
-          position(${adsetinsightsdailyagg__placement_details.platform_proper},"_")+1,9999
-        )
-      label: Platform Sub 2
-      value_format:
-      value_format_name:
-      _kind_hint: dimension
-      table_calculation: platform_sub_2
-      _type_hint: string
-    - category: table_calculation
-      expression: concat(${platform_sub_1}," ",${platform_sub_2}, " - ",${adsetinsightsdailyagg__targeting_audiences.adset_audience})
-      label: Platform Adset Audience
-      value_format:
-      value_format_name:
-      _kind_hint: dimension
-      table_calculation: platform_adset_audience
-      _type_hint: string
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
@@ -1496,10 +1243,10 @@
     show_totals_labels: false
     show_silhouette: false
     totals_color: "#808080"
-    y_axes: [{label: Total Video Views, orientation: left, series: [{axisId: totalview_facebook,
-            id: totalview_facebook, name: Facebook - Video View}, {axisId: totalview_instagram,
-            id: totalview_instagram, name: Instagram - Video View}, {axisId: totalview_an,
-            id: totalview_an, name: TotalView AN}], showLabels: true, showValues: true,
+    y_axes: [{label: Total Video Views, orientation: left, series: [{axisId: adsetinsightsdailyagg__placement_details.sum_of_video_views_facebook,
+            id: adsetinsightsdailyagg__placement_details.sum_of_video_views_facebook, name: Facebook - Video View}, {axisId: adsetinsightsdailyagg__placement_details.sum_of_video_views_instagram,
+            id: adsetinsightsdailyagg__placement_details.sum_of_video_views_instagram, name: Instagram - Video View}, {axisId: adsetinsightsdailyagg__placement_details.sum_of_video_views_audience_network,
+            id: adsetinsightsdailyagg__placement_details.sum_of_video_views_audience_network, name: TotalView AN}], showLabels: true, showValues: true,
         unpinAxis: false, tickDensity: default, type: linear}, {label: CPCV, orientation: right,
         series: [{axisId: adsetinsightsdailyagg__placement_details.cpcv_adset, id: adsetinsightsdailyagg__placement_details.cpcv_adset,
             name: Cpcv Adset}], showLabels: true, showValues: true, unpinAxis: false,
@@ -1513,17 +1260,17 @@
       adsetinsightsdailyagg__placement_details.vtr_adset: line
       adsetinsightsdailyagg__placement_details.cpcv_adset: line
     series_colors:
-      totalview_facebook: "#deffd7"
-      totalview_instagram: "#d3edfc"
-      totalview_an: "#fff9a3"
+      adsetinsightsdailyagg__placement_details.sum_of_video_views_facebook: "#deffd7"
+      adsetinsightsdailyagg__placement_details.sum_of_video_views_instagram: "#d3edfc"
+      adsetinsightsdailyagg__placement_details.sum_of_video_views_audience_network: "#fff9a3"
       adsetinsightsdailyagg__placement_details.vtr_adset: "#079c98"
       adsetinsightsdailyagg__placement_details.cpcv_adset: "#E8710A"
     series_labels:
-      totalview_facebook: Facebook - Video View
-      totalview_instagram: Instagram - Video View
+      adsetinsightsdailyagg__placement_details.sum_of_video_views_facebook: Facebook - Video View
+      adsetinsightsdailyagg__placement_details.sum_of_video_views_instagram: Instagram - Video View
       adsetinsightsdailyagg__placement_details.cpcv_adset: Cost Per Completed View
       adsetinsightsdailyagg__placement_details.vtr_adset: Video Through Rate
-      totalview_an: Audience Network - Video View
+      adsetinsightsdailyagg__placement_details.sum_of_video_views_audience_network: Audience Network - Video View
     series_point_styles:
       adsetinsightsdailyagg__placement_details.cpcv_adset: triangle
     column_group_spacing_ratio: 0.2
@@ -1543,11 +1290,7 @@
         }]
       }
     defaults_version: 1
-    hidden_fields: [adsetinsightsdailyagg.total_video_p95_watched_actions_video_views_sum,
-      adsetinsightsdailyagg.sum_of_total_video_view, adsetinsightsdailyagg__placement_details.sum_of_video_view_adset,
-      adsetinsightsdailyagg__placement_details.sum_of_video_views_adset, adsetinsightsdailyagg__placement_details.platform_proper,
-      adsetinsightsdailyagg__targeting_audiences_sdt.adset_audience, platform_sub_1,
-      platform_sub_2]
+    hidden_fields: [adsetinsightsdailyagg__placement_details.platform_proper,adsetinsightsdailyagg__targeting_audiences_sdt.adset_audience]
     listen:
       Date: adsetinsightsdailyagg.date
       Campaign Name: adsetinsightsdailyagg.campaign_name
